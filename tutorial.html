@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tutorial – bakat.id</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --rose: #F49CBB;
+  --rose-light: #FBDAE6;
+  --rose-pale: #FDF3F6;
+  --rose-deep: #D4607E;
+  --cream: #FBF6F0;
+  --warm-white: #FEFCFA;
+  --ink: #7D2040;
+  --ink-mid: #4A2D35;
+  --ink-muted: #8C6870;
+  --gold: #C4923A;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+html, body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  background: var(--warm-white); color: var(--ink);
+  height: 100dvh; overflow: hidden;
+}
+
+.bg {
+  position: fixed; inset: 0; z-index: 0;
+  background: radial-gradient(ellipse at 50% 20%, rgba(244,156,187,0.06) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.app {
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column;
+  height: 100dvh; max-width: 430px; margin: 0 auto; width: 100%;
+}
+
+/* ── HEADER ───────────────────────────── */
+.header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 20px;
+  flex-shrink: 0;
+  border-bottom: 1px solid rgba(244,156,187,0.12);
+}
+.logo { font-size: 16px; font-weight: 700; letter-spacing: 0.02em; color: var(--ink); }
+.skip-btn {
+  font-size: 13px; font-weight: 500; color: var(--ink-muted);
+  background: none; border: none; cursor: pointer; padding: 6px 0;
+  transition: color 0.2s;
+}
+.skip-btn:hover { color: var(--rose); }
+
+/* ── CONTENT ──────────────────────────── */
+.content-wrap { flex: 1; position: relative; overflow: hidden; }
+
+/* ── STEP PANELS ──────────────────────── */
+.step {
+  position: absolute; inset: 0;
+  display: none; flex-direction: column;
+  align-items: center; justify-content: space-between;
+  padding: 28px 24px 24px;
+  opacity: 0; transition: opacity 0.38s ease;
+}
+.step.show    { display: flex; }
+.step.visible { opacity: 1; }
+
+/* ── DEMO AREA ────────────────────────── */
+.demo-area {
+  flex: 1; width: 100%;
+  display: flex; align-items: center; justify-content: center;
+  min-height: 0;
+}
+
+/* ── TEXT ─────────────────────────────── */
+.step-label {
+  font-size: 12px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--rose); margin-bottom: 5px; text-align: center;
+}
+.step-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(20px, 5.5vw, 24px); font-weight: 700;
+  letter-spacing: -0.01em; line-height: 1.2; color: var(--ink); text-align: center;
+}
+.step-sub {
+  font-size: 13px; font-weight: 400; color: var(--ink-muted);
+  margin-top: 7px; line-height: 1.7; text-align: center;
+}
+
+/* ── BOTTOM ───────────────────────────── */
+.bottom-section {
+  width: 100%; display: flex; flex-direction: column;
+  align-items: center; gap: 14px; padding-top: 16px; flex-shrink: 0;
+}
+.progress-dots { display: flex; gap: 7px; }
+.dot {
+  height: 7px; width: 7px; border-radius: 4px;
+  background: rgba(244,156,187,0.18);
+  transition: width 0.3s ease, background 0.3s ease;
+}
+.dot.on { width: 22px; background: linear-gradient(90deg, var(--rose-light), var(--rose)); }
+.nav-row { display: flex; gap: 10px; width: 100%; align-items: center; }
+
+.next-btn {
+  display: flex; align-items: center; flex: 1;
+  background: var(--rose); border: none; border-radius: 100px; padding: 6px;
+  box-shadow: 0 4px 20px rgba(244,156,187,0.30); cursor: pointer;
+  font-family: 'DM Sans', system-ui, sans-serif;
+  transition: transform 0.18s, background 0.18s, box-shadow 0.18s;
+}
+.next-btn:hover { background: var(--rose-deep); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(244,156,187,0.38); }
+.next-btn:active { transform: scale(0.97); }
+.next-label { color: #7D2040; flex: 1; text-align: center; margin: 0 4px 0 18px; font-size: 14px; font-weight: 500; }
+.next-icon { background: rgba(125,32,64,0.12); border-radius: 100px; padding: 12px 22px; color: #7D2040; font-size: 18px; line-height: 1; flex-shrink: 0; }
+
+.back-btn {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: rgba(244,156,187,0.06); border: 1px solid rgba(244,156,187,0.15);
+  color: var(--ink-mid); font-size: 20px; line-height: 1;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; flex-shrink: 0; transition: background 0.18s, transform 0.15s;
+}
+.back-btn:active { transform: scale(0.91); background: rgba(244,156,187,0.12); }
+
+/* ── TUTORIAL BANNER ──────────────────── */
+.tutorial-banner {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 7px 20px;
+  background: rgba(196,146,58,0.10);
+  border-bottom: 1px solid rgba(196,146,58,0.22);
+  font-size: 12px; font-weight: 500; color: var(--gold);
+  letter-spacing: 0.03em; flex-shrink: 0;
+}
+.tutorial-banner-icon { font-size: 13px; }
+
+/* ── DEMO FRAME ───────────────────────── */
+.demo-frame {
+  position: relative; width: 100%; max-width: 330px;
+  background: rgba(244,156,187,0.03);
+  border: 1.5px dashed rgba(244,156,187,0.25);
+  border-radius: 20px; padding: 20px 20px 14px;
+  display: flex; flex-direction: column; align-items: center;
+}
+.demo-frame-label {
+  position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+  background: var(--warm-white);
+  font-size: 10.5px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--ink-muted); padding: 2px 10px;
+  border: 1px solid rgba(244,156,187,0.20); border-radius: 100px;
+}
+
+/* ══════════════════════════════════════
+   STEP 1 — SLIDER DEMO
+══════════════════════════════════════ */
+.slider-demo {
+  width: 100%; max-width: 310px;
+  display: flex; flex-direction: column; align-items: center; gap: 0;
+}
+
+/* Emoji bubble */
+.sd-bubble {
+  display: flex; flex-direction: column; align-items: center; gap: 5px;
+  height: 80px; justify-content: flex-end;
+  position: relative; width: 100%;
+  pointer-events: none;
+}
+.sd-emoji-wrap {
+  position: absolute; bottom: 0;
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  transform: translateX(-50%);
+  /* left: set via JS */
+  transition: left 0.55s cubic-bezier(0.34,1.3,0.64,1);
+}
+.sd-emoji {
+  font-size: 44px; line-height: 1;
+  filter: drop-shadow(0 3px 10px rgba(244,156,187,0.28));
+  transition: transform 0.25s cubic-bezier(0.34,1.6,0.64,1);
+}
+.sd-label {
+  font-size: 12px; font-weight: 500; color: var(--rose); white-space: nowrap; line-height: 1;
+  transition: opacity 0.25s;
+}
+
+/* Track */
+.sd-track-wrap { width: 100%; position: relative; height: 52px; display: flex; align-items: center; }
+.sd-rail { position: absolute; left: 0; right: 0; height: 6px; border-radius: 6px; background: rgba(244,156,187,0.12); overflow: hidden; }
+.sd-fill { height: 100%; border-radius: 6px; background: linear-gradient(90deg, var(--rose-light), var(--rose)); transition: width 0.55s cubic-bezier(0.34,1.3,0.64,1); }
+.sd-dots { position: absolute; left: 0; right: 0; display: flex; justify-content: space-between; align-items: center; }
+.sd-dot {
+  width: 11px; height: 11px; border-radius: 50%; flex-shrink: 0;
+  background: rgba(244,156,187,0.15); border: 2px solid var(--warm-white);
+  transition: background 0.3s, transform 0.3s;
+}
+.sd-dot.on   { background: var(--rose); transform: scale(1.15); }
+.sd-dot.past { background: rgba(244,156,187,0.38); }
+
+.sd-thumb {
+  position: absolute; width: 50px; height: 46px;
+  background: var(--rose);
+  clip-path: path('M25 41C24 40 3 27 3 15C3 7 8 2 15 2C19 2 23 5 25 9C27 5 31 2 35 2C42 2 47 7 47 15C47 27 26 40 25 41Z');
+  filter: drop-shadow(0 5px 12px rgba(244,156,187,0.50));
+  transform: translateX(-50%);
+  left: 50%; /* animated by JS */
+  transition: left 0.55s cubic-bezier(0.34,1.3,0.64,1);
+  z-index: 2;
+}
+
+.sd-end-labels {
+  width: 100%; display: flex; justify-content: space-between; padding: 0 2px; margin-top: 4px;
+}
+.sd-end-labels span { font-size: 10.5px; color: var(--ink-muted); }
+
+/* ══════════════════════════════════════
+   STEP 2 — DIMENSION CARDS
+══════════════════════════════════════ */
+.dim-scene {
+  display: flex; flex-direction: column; gap: 10px; width: 100%; max-width: 300px;
+}
+.dim-card {
+  display: flex; align-items: center; gap: 14px;
+  padding: 13px 16px; border-radius: 14px;
+  border: 1.5px solid rgba(244,156,187,0.12);
+  background: rgba(244,156,187,0.04);
+  animation: dimReveal 3.6s ease-in-out infinite;
+}
+.dim-card:nth-child(1) { animation-delay: 0s; }
+.dim-card:nth-child(2) { animation-delay: 0.45s; border-color: rgba(196,146,58,0.16); background: rgba(196,146,58,0.04); }
+.dim-card:nth-child(3) { animation-delay: 0.90s; border-color: rgba(45,122,92,0.16); background: rgba(45,122,92,0.04); }
+@keyframes dimReveal {
+  0%,15%  { transform: translateX(0); opacity: 0.6; }
+  30%,75% { transform: translateX(4px); opacity: 1; }
+  100%    { transform: translateX(0); opacity: 0.6; }
+}
+.dim-icon {
+  width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; font-size: 18px;
+}
+.dim-card:nth-child(1) .dim-icon { background: rgba(244,156,187,0.10); }
+.dim-card:nth-child(2) .dim-icon { background: rgba(196,146,58,0.12); }
+.dim-card:nth-child(3) .dim-icon { background: rgba(45,122,92,0.10); }
+.dim-body {}
+.dim-name { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 1px; }
+.dim-card:nth-child(1) .dim-name { color: var(--rose); }
+.dim-card:nth-child(2) .dim-name { color: var(--gold); }
+.dim-card:nth-child(3) .dim-name { color: #2D7A5C; }
+.dim-desc { font-size: 12px; color: var(--ink-muted); line-height: 1.4; }
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="app">
+
+  <div class="header">
+    <div class="logo">bakat.id</div>
+    <button class="skip-btn" onclick="heartbeatTransition(this)">Lewati &#8594;</button>
+  </div>
+
+  <div class="tutorial-banner">
+    <span class="tutorial-banner-icon">📖</span>
+    <span>Panduan · Ini bukan soal aslinya</span>
+  </div>
+
+  <div class="content-wrap">
+
+    <!-- ── STEP 1: SLIDER DEMO ── -->
+    <div class="step" id="step1">
+      <div class="demo-area">
+        <div class="demo-frame">
+        <div class="demo-frame-label">Contoh</div>
+        <div class="slider-demo">
+          <div class="sd-bubble">
+            <div class="sd-emoji-wrap" id="sdBubble">
+              <div class="sd-emoji" id="sdEmoji">🤍</div>
+              <div class="sd-label" id="sdLabel"></div>
+            </div>
+          </div>
+          <div class="sd-track-wrap">
+            <div class="sd-rail"><div class="sd-fill" id="sdFill" style="width:0%"></div></div>
+            <div class="sd-dots">
+              <div class="sd-dot" data-v="1"></div>
+              <div class="sd-dot" data-v="2"></div>
+              <div class="sd-dot" data-v="3"></div>
+              <div class="sd-dot" data-v="4"></div>
+              <div class="sd-dot" data-v="5"></div>
+            </div>
+            <div class="sd-thumb" id="sdThumb"></div>
+          </div>
+          <div class="sd-end-labels">
+            <span>Nggak banget</span>
+            <span>Banget, ini aku</span>
+          </div>
+        </div>
+        </div>
+      </div>
+      <div style="text-align:center;">
+        <div class="step-label">Cara menjawab</div>
+        <div class="step-title">Geser slider-nya</div>
+        <div class="step-sub">Drag ke kiri atau kanan sesuai<br>seberapa kuat kamu merasakannya</div>
+      </div>
+      <div class="bottom-section">
+        <div class="progress-dots">
+          <div class="dot on"></div>
+          <div class="dot"></div>
+        </div>
+        <div class="nav-row">
+          <button class="next-btn" onclick="goTo(2)">
+            <span class="next-label">Next</span>
+            <div class="next-icon">&#8594;</div>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── STEP 2: DIMENSIONS ── -->
+    <div class="step" id="step2">
+      <div class="demo-area">
+        <div class="dim-scene">
+          <div class="dim-card">
+            <div class="dim-icon">&#10084;&#65039;</div>
+            <div class="dim-body">
+              <div class="dim-name">Intimacy</div>
+              <div class="dim-desc">Seberapa dekat dan nyaman kamu secara emosional</div>
+            </div>
+          </div>
+          <div class="dim-card">
+            <div class="dim-icon">&#10024;</div>
+            <div class="dim-body">
+              <div class="dim-name">Passion</div>
+              <div class="dim-desc">Seberapa kuat ketertarikan dan chemistry yang kamu rasakan</div>
+            </div>
+          </div>
+          <div class="dim-card">
+            <div class="dim-icon">&#128274;</div>
+            <div class="dim-body">
+              <div class="dim-name">Commitment</div>
+              <div class="dim-desc">Seberapa serius niatmu untuk menjaga hubungan ini</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="text-align:center;">
+        <div class="step-label">Tips</div>
+        <div class="step-title">Pikirkan satu orang</div>
+        <div class="step-sub">Jawab berdasarkan perasaanmu<br>terhadap satu orang saat ini. Nggak ada jawaban salah.</div>
+      </div>
+      <div class="bottom-section">
+        <div class="progress-dots">
+          <div class="dot"></div>
+          <div class="dot on"></div>
+        </div>
+        <div class="nav-row">
+          <button class="back-btn" onclick="goTo(1)">&#8249;</button>
+          <button class="next-btn" onclick="heartbeatTransition(this)">
+            <span class="next-label">Mulai Tes!</span>
+            <div class="next-icon">&#8594;</div>
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+let current = 1;
+
+function goTo(n) {
+  const prev = document.getElementById('step' + current);
+  prev.classList.remove('visible');
+  setTimeout(() => prev.classList.remove('show'), 360);
+  current = n;
+  const next = document.getElementById('step' + current);
+  next.classList.add('show');
+  requestAnimationFrame(() => requestAnimationFrame(() => next.classList.add('visible')));
+}
+
+function heartbeatTransition(btn) {
+  localStorage.setItem('tutorialSeen', 'true');
+  const rect = btn.getBoundingClientRect();
+  const cx = Math.round(rect.left + rect.width / 2);
+  const cy = Math.round(rect.top  + rect.height / 2);
+  const maxR = Math.ceil(Math.sqrt(
+    Math.pow(Math.max(cx, window.innerWidth  - cx), 2) +
+    Math.pow(Math.max(cy, window.innerHeight - cy), 2)
+  )) + 20;
+
+  const ov = document.createElement('div');
+  ov.style.cssText = `position:fixed;inset:0;z-index:9000;background:#F49CBB;clip-path:circle(0px at ${cx}px ${cy}px);pointer-events:none;`;
+  document.body.appendChild(ov);
+
+  const cp = r => `circle(${r}px at ${cx}px ${cy}px)`;
+
+  const anim = ov.animate([
+    { clipPath: cp(0),    easing: 'ease-out',                   offset: 0    },
+    { clipPath: cp(26),   easing: 'cubic-bezier(0.6,0,0.8,1)', offset: 0.13 },
+    { clipPath: cp(14),   easing: 'ease-out',                   offset: 0.24 },
+    { clipPath: cp(46),   easing: 'cubic-bezier(0.6,0,0.8,1)', offset: 0.42 },
+    { clipPath: cp(28),   easing: 'cubic-bezier(0.4,0,1,0.9)', offset: 0.54 },
+    { clipPath: cp(maxR), offset: 1 },
+  ], { duration: 900, fill: 'forwards' });
+
+  anim.onfinish = () => { window.location.href = 'quiz.html?intro=1'; };
+}
+
+// Init step 1
+(function() {
+  const s = document.getElementById('step1');
+  s.classList.add('show');
+  requestAnimationFrame(() => requestAnimationFrame(() => s.classList.add('visible')));
+})();
+
+// ── Slider animation loop ──────────────
+const DEMO_STEPS = [
+  { v: 1, pct: 0,   emoji: '😶', label: 'Nggak banget' },
+  { v: 3, pct: 50,  emoji: '🤔', label: 'Bisa jadi' },
+  { v: 5, pct: 100, emoji: '🥰', label: 'Banget, ini aku' },
+  { v: 4, pct: 75,  emoji: '🙂', label: 'Iya, relate' },
+  { v: 2, pct: 25,  emoji: '😕', label: 'Kayaknya nggak' },
+];
+let demoIdx = 0;
+
+function applyDemoStep(step) {
+  document.getElementById('sdThumb').style.left  = step.pct + '%';
+  document.getElementById('sdBubble').style.left = step.pct + '%';
+  document.getElementById('sdFill').style.width  = step.pct + '%';
+
+  const emojiEl = document.getElementById('sdEmoji');
+  emojiEl.style.transform = 'scale(1.25)';
+  setTimeout(() => emojiEl.style.transform = 'scale(1)', 220);
+  emojiEl.textContent = step.emoji;
+  document.getElementById('sdLabel').textContent = step.label;
+
+  document.querySelectorAll('.sd-dot').forEach(d => {
+    const dv = +d.dataset.v;
+    d.classList.toggle('on',   dv === step.v);
+    d.classList.toggle('past', dv < step.v);
+  });
+}
+
+function tickDemo() {
+  demoIdx = (demoIdx + 1) % DEMO_STEPS.length;
+  applyDemoStep(DEMO_STEPS[demoIdx]);
+}
+
+// Initial position
+setTimeout(() => applyDemoStep(DEMO_STEPS[0]), 600);
+setInterval(tickDemo, 1600);
+</script>
+</body>
+</html>

@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Love Type Result – bakat.id</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --rose: #F49CBB;
+  --rose-light: #FBDAE6;
+  --rose-pale: #FDF3F6;
+  --rose-deep: #D4607E;
+  --cream: #FBF6F0;
+  --warm-white: #FEFCFA;
+  --blush: #F7D6DC;
+  --ink: #7D2040;
+  --ink-mid: #4A2D35;
+  --ink-muted: #8C6870;
+  --gold: #C4923A;
+  --gold-light: #F0D5A0;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+html, body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  color: var(--ink); min-height: 100%; background: var(--warm-white);
+}
+.bg {
+  position: fixed; inset: 0; z-index: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(244,156,187,0.06) 0%, transparent 60%);
+  pointer-events: none;
+}
+.app {
+  position: relative; z-index: 1;
+  max-width: 430px; margin: 0 auto;
+  min-height: 100dvh; display: flex; flex-direction: column;
+  padding-bottom: calc(28px + env(safe-area-inset-bottom));
+}
+
+/* ── HEADER ──────────────────────────── */
+.header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 20px 6px;
+}
+.logo { font-size: 15px; font-weight: 700; letter-spacing: 0.02em; color: var(--ink); }
+.header-share-btn {
+  background: var(--rose); border: none;
+  border-radius: 100px; padding: 7px 14px;
+  color: #7D2040; font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 12px; font-weight: 500; cursor: pointer;
+  box-shadow: 0 4px 16px rgba(244,156,187,0.28);
+  transition: background 0.18s, transform 0.15s;
+}
+.header-share-btn:hover { background: var(--rose-deep); transform: translateY(-1px); }
+.header-share-btn:active { transform: scale(0.97); }
+
+/* ── TOP ─────────────────────────────── */
+.top-section { text-align: center; padding: 6px 20px 0; }
+.top-eyebrow {
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--rose); margin-bottom: 4px;
+}
+.top-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(28px, 8vw, 38px);
+  font-weight: 700; letter-spacing: -0.01em; line-height: 1.1;
+  color: var(--ink);
+}
+
+/* ── POLAROID ─────────────────────────── */
+.card-section { display: flex; justify-content: center; padding: 0 20px; }
+.card-wrap { position: relative; margin-top: 20px; }
+.polaroid {
+  background: linear-gradient(180deg, #f7ede0 0%, #ede2d0 100%);
+  border-radius: 16px; padding: 9px 9px 24px;
+  width: min(240px, calc(100vw - 60px));
+  box-shadow:
+    rgba(244,156,187,0.16) 0 8px 36px,
+    rgba(255,248,245,0.60) 2px 2px 0 inset,
+    rgba(244,156,187,0.08) 0 22px 55px,
+    rgba(0,0,0,0.06) 0 5px 14px;
+  transform: rotate(2.5deg);
+  animation: polFloat 5.5s ease-in-out infinite 0.6s;
+  position: relative; z-index: 2;
+}
+@keyframes polFloat {
+  0%,100% { transform: rotate(2.5deg) translateY(0); }
+  50%      { transform: rotate(2.5deg) translateY(-8px); }
+}
+.pi { border-radius: 9px; overflow: hidden; height: 176px; position: relative; }
+.pi-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
+.pi-label {
+  position: absolute; bottom: 0; left: 0; right: 0; z-index: 3;
+  padding: 28px 10px 8px;
+  background: linear-gradient(transparent, rgba(0,0,0,0.75));
+  font-size: 11.5px; font-weight: 700; color: #fff;
+  text-align: center; line-height: 1.2;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.7);
+}
+
+/* ── SCORE BARS ──────────────────────── */
+.scores-wrap { padding: 22px 22px 0; }
+.score-row { margin-bottom: 13px; }
+.score-row:last-child { margin-bottom: 0; }
+.score-label-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+.score-dim-label { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-muted); }
+.score-dim-value { font-size: 12px; font-weight: 700; color: var(--rose); }
+.score-bar-track { height: 5px; border-radius: 5px; background: rgba(244,156,187,0.10); overflow: hidden; }
+.score-bar-fill {
+  height: 100%; border-radius: 5px;
+  background: linear-gradient(90deg, var(--rose-light), var(--rose));
+  transition: width 0.9s cubic-bezier(0.4,0,0.2,1); width: 0%;
+}
+
+/* ── VIBES BLOCK ─────────────────────── */
+.section-wrap { padding: 16px 22px 0; }
+.vibes-block {
+  padding: 18px 22px 14px;
+  background: rgba(244,156,187,0.05);
+  border: 1px solid rgba(244,156,187,0.18);
+  border-radius: 14px;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 13.5px; font-weight: 400; font-style: italic;
+  color: var(--ink-mid); line-height: 1.7;
+  text-align: center;
+  position: relative; overflow: hidden;
+}
+.vibes-block::before {
+  content: '❝'; position: absolute; top: -4px; left: 8px;
+  font-size: 52px; line-height: 1;
+  color: var(--rose-light); opacity: 0.35;
+  font-family: 'Playfair Display', Georgia, serif;
+  pointer-events: none;
+}
+
+/* ── DIVIDER ─────────────────────────── */
+.divider {
+  height: 1px; margin: 18px 22px 0;
+  background: linear-gradient(90deg, transparent, rgba(244,156,187,0.18), transparent);
+}
+
+/* ── CTA ─────────────────────────────── */
+.cta-section { padding: 18px 22px 0; display: flex; flex-direction: column; gap: 9px; }
+.cta-primary {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  width: 100%; border: none; border-radius: 100px; padding: 14px 24px;
+  background: var(--rose);
+  box-shadow: 0 4px 20px rgba(244,156,187,0.30);
+  cursor: pointer; font-family: 'DM Sans', system-ui, sans-serif;
+  font-weight: 500; font-size: 14px; color: #7D2040;
+  transition: transform 0.18s, box-shadow 0.18s, background 0.18s;
+}
+.cta-primary:hover { background: var(--rose-deep); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(244,156,187,0.38); }
+.cta-primary:active { transform: scale(0.97); }
+.cta-secondary {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  width: 100%; border: 1.5px solid var(--rose); border-radius: 100px;
+  padding: 13px 24px; background: transparent;
+  cursor: pointer; font-family: 'DM Sans', system-ui, sans-serif;
+  font-weight: 500; font-size: 13px; color: var(--rose);
+  transition: transform 0.18s, opacity 0.18s;
+}
+.cta-secondary:hover { opacity: 0.72; }
+.cta-secondary:active { transform: scale(0.97); }
+
+/* ── SHARE ───────────────────────────── */
+.share-section { padding: 10px 22px 0; display: flex; flex-direction: column; align-items: center; gap: 7px; }
+.share-label { font-size: 9.5px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-muted); opacity: 0.7; }
+.share-icons { display: flex; gap: 7px; align-items: center; flex-wrap: wrap; justify-content: center; }
+.share-icon-btn {
+  width: 38px; height: 38px; border-radius: 50%;
+  border: 1px solid rgba(244,156,187,0.18);
+  background: rgba(244,156,187,0.05);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; cursor: pointer;
+  transition: background 0.18s, transform 0.16s;
+}
+.share-icon-btn:active { transform: scale(0.91); background: rgba(244,156,187,0.12); }
+.share-icon-btn.wa   { background: #E6F9EE; border-color: #25D366; }
+.share-icon-btn.x    { background: #E8E4E6; border-color: rgba(0,0,0,0.55); }
+.share-icon-btn.ig   { background: #FDEEF1; border-color: var(--rose); }
+.share-icon-btn.copy { background: #FDEEF1; border-color: var(--rose); }
+
+/* SUITE NUDGE */
+.suite-nudge { padding: 20px 20px 0; border-top: 1px solid rgba(244,156,187,0.18); margin-top: 18px; }
+.suite-nudge-text { font-size: 12.5px; color: var(--ink-muted); line-height: 1.75; text-align: center; margin-bottom: 14px; }
+.suite-nudge-text em { font-style: normal; color: var(--rose-deep); font-weight: 500; }
+.suite-nudge-list { display: flex; flex-direction: column; gap: 8px; }
+.suite-nudge-item { display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-radius: 12px; background: rgba(244,156,187,0.07); border: 1px solid rgba(244,156,187,0.18); cursor: pointer; text-align: left; font-family: 'DM Sans', system-ui, sans-serif; width: 100%; transition: background 0.18s; }
+.suite-nudge-item:hover { background: rgba(244,156,187,0.14); }
+.suite-nudge-item.soon { opacity: 0.52; cursor: default; pointer-events: none; }
+.suite-nudge-cs { font-size: 9.5px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-muted); background: rgba(140,104,112,0.09); border: 1px solid rgba(140,104,112,0.16); border-radius: 100px; padding: 2px 8px; flex-shrink: 0; white-space: nowrap; }
+.suite-nudge-item-info { flex: 1; min-width: 0; }
+.suite-nudge-item-name { font-size: 12.5px; font-weight: 600; color: var(--rose-deep); margin-bottom: 2px; }
+.suite-nudge-item-desc { font-size: 11px; color: var(--ink-muted); line-height: 1.4; }
+.suite-nudge-item-icon { font-size: 20px; flex-shrink: 0; }
+.suite-nudge-item-arrow { font-size: 14px; color: var(--rose); flex-shrink: 0; }
+
+/* ── SPARKLES ─────────────────────────── */
+.sp { position: fixed; background: var(--rose-light); border-radius: 50%; pointer-events: none;
+      animation: spTwinkle var(--d,2s) ease-in-out infinite var(--dl,0s); }
+@keyframes spTwinkle { 0%,100% { opacity:0.06; transform:scale(0.3); } 50% { opacity:0.55; transform:scale(1); } }
+
+/* ── OVERLAY / SHEET ─────────────────── */
+.overlay {
+  position: fixed; inset: 0; z-index: 400;
+  background: rgba(28,16,22,0.40);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  display: flex; align-items: flex-end; justify-content: center;
+  opacity: 0; pointer-events: none; transition: opacity 0.30s ease;
+}
+.overlay.open { opacity: 1; pointer-events: all; }
+.sheet {
+  width: 100%; max-width: 430px;
+  background: var(--warm-white);
+  border: 1px solid rgba(244,156,187,0.15);
+  border-radius: 28px 28px 0 0;
+  padding: 20px 24px calc(36px + env(safe-area-inset-bottom));
+  transform: translateY(100%);
+  transition: transform 0.46s cubic-bezier(0.22,1,0.36,1);
+}
+.overlay.open .sheet { transform: translateY(0); }
+.sheet-handle { width: 40px; height: 4px; background: rgba(244,156,187,0.15); border-radius: 2px; margin: 0 auto 22px; }
+.sheet-icon-row { display: flex; justify-content: center; margin-bottom: 14px; }
+.sheet-lock-icon {
+  width: 52px; height: 52px; border-radius: 50%;
+  background: rgba(244,156,187,0.08); border: 1.5px solid rgba(244,156,187,0.20);
+  display: flex; align-items: center; justify-content: center; font-size: 24px;
+}
+.sheet-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 18px; font-weight: 700; color: var(--ink); text-align: center; margin-bottom: 8px;
+}
+.sheet-sub { font-size: 13px; font-weight: 400; color: var(--ink-muted); line-height: 1.75; text-align: center; margin-bottom: 8px; }
+.sheet-warning {
+  display: flex; align-items: flex-start; gap: 10px;
+  background: rgba(244,156,187,0.06); border: 1px solid rgba(244,156,187,0.18);
+  border-radius: 12px; padding: 11px 14px; margin-bottom: 22px;
+}
+.sheet-warning-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+.sheet-warning-text { font-size: 12px; font-weight: 400; line-height: 1.6; color: var(--rose-deep); }
+.google-btn {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  width: 100%; border: 1px solid rgba(244,156,187,0.15); border-radius: 100px; padding: 14px 24px;
+  background: #fff; box-shadow: 0 2px 12px rgba(244,156,187,0.08);
+  cursor: pointer; font-family: 'DM Sans', system-ui, sans-serif;
+  font-weight: 500; font-size: 14.5px; color: var(--ink);
+  transition: transform 0.18s, box-shadow 0.18s; position: relative; margin-bottom: 12px;
+}
+.google-btn:hover { box-shadow: 0 4px 20px rgba(244,156,187,0.14); transform: translateY(-1px); }
+.google-btn:active { transform: scale(0.97); }
+.google-btn:disabled { opacity: 0.7; cursor: not-allowed; }
+.google-btn-label { transition: opacity 0.18s; }
+.google-btn.loading .google-btn-label { opacity: 0; }
+.google-spinner {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%);
+  width: 22px; height: 22px;
+  border: 2.5px solid rgba(244,156,187,0.15); border-top-color: var(--rose); border-radius: 50%;
+  animation: spin 0.7s linear infinite; opacity: 0; pointer-events: none; transition: opacity 0.18s;
+}
+.google-btn.loading .google-spinner { opacity: 1; }
+@keyframes spin { to { transform: translate(-50%,-50%) rotate(360deg); } }
+.sheet-cancel {
+  display: block; width: 100%; text-align: center; background: none; border: none;
+  color: var(--ink-muted); font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 13px; font-weight: 400; cursor: pointer; padding: 6px;
+  transition: color 0.18s;
+}
+.sheet-cancel:hover { color: var(--rose); }
+
+/* ── TOAST ────────────────────────────── */
+.toast {
+  position: fixed; bottom: calc(30px + env(safe-area-inset-bottom)); left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--ink); color: var(--warm-white);
+  border-radius: 100px; padding: 10px 20px;
+  font-size: 13px; font-weight: 500; white-space: nowrap;
+  opacity: 0; transition: opacity 0.22s ease, transform 0.22s ease;
+  z-index: 500;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+</style>
+</head>
+<body>
+<div class="bg"></div>
+
+<div class="sp" style="width:3px;height:3px;top:10%;left:8%;--d:2.2s;--dl:0.1s"></div>
+<div class="sp" style="width:2px;height:2px;top:25%;left:92%;--d:3.1s;--dl:0.8s"></div>
+<div class="sp" style="width:4px;height:4px;top:60%;left:5%;--d:2.7s;--dl:1.4s"></div>
+<div class="sp" style="width:2px;height:2px;top:80%;left:89%;--d:1.9s;--dl:0.3s"></div>
+
+<div class="app">
+  <div class="header">
+    <span class="logo">bakat.id</span>
+    <button class="header-share-btn" onclick="shareResult()">Bagikan</button>
+  </div>
+
+  <div class="top-section">
+    <div class="top-eyebrow">✦ Tipe Cinta Kamu</div>
+    <div class="top-title" id="typeName">—</div>
+  </div>
+
+  <div class="card-section">
+    <div class="card-wrap">
+      <div class="polaroid">
+        <div class="pi">
+          <img class="pi-img" id="piImg" src="" alt="">
+          <div class="pi-label" id="piLabel">—</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-wrap">
+    <div class="vibes-block" id="vibesBlock"></div>
+  </div>
+
+  <div class="scores-wrap">
+    <div class="score-row">
+      <div class="score-label-row">
+        <span class="score-dim-label">Nyaman & Dekat</span>
+        <span class="score-dim-value" id="scoreI">—</span>
+      </div>
+      <div class="score-bar-track"><div class="score-bar-fill" id="barI"></div></div>
+    </div>
+    <div class="score-row">
+      <div class="score-label-row">
+        <span class="score-dim-label">Spark & Chemistry</span>
+        <span class="score-dim-value" id="scoreP">—</span>
+      </div>
+      <div class="score-bar-track"><div class="score-bar-fill" id="barP"></div></div>
+    </div>
+    <div class="score-row">
+      <div class="score-label-row">
+        <span class="score-dim-label">Serius & Bertahan</span>
+        <span class="score-dim-value" id="scoreC">—</span>
+      </div>
+      <div class="score-bar-track"><div class="score-bar-fill" id="barC"></div></div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="cta-section">
+    <button class="cta-primary" onclick="goToReport()">📋 Lihat Laporan Lengkap</button>
+    <button class="cta-secondary" onclick="doRetry()">🔄 Ulang Assessment</button>
+  </div>
+
+  <div class="share-section">
+    <span class="share-label">Bagikan hasilmu</span>
+    <div class="share-icons">
+      <button class="share-icon-btn wa"   onclick="shareWA()">💬</button>
+      <button class="share-icon-btn x"    onclick="shareX()">✕</button>
+      <button class="share-icon-btn ig"   onclick="shareIG()">📸</button>
+      <button class="share-icon-btn copy" onclick="copyLink()">🔗</button>
+    </div>
+  </div>
+
+  <div class="suite-nudge">
+    <p class="suite-nudge-text">Cinta punya lebih dari satu sisi. <em>Romantic Profile</em> punya 4 subtes — kamu baru kenal satu.</p>
+    <div class="suite-nudge-list">
+      <button class="suite-nudge-item">
+        <span class="suite-nudge-item-icon">⚡</span>
+        <div class="suite-nudge-item-info">
+          <div class="suite-nudge-item-name">Conflict Language</div>
+          <div class="suite-nudge-item-desc">Gimana kamu saat ada gesekan dalam hubungan?</div>
+        </div>
+        <span class="suite-nudge-item-arrow">→</span>
+      </button>
+      <button class="suite-nudge-item soon" disabled>
+        <span class="suite-nudge-item-icon">🎁</span>
+        <div class="suite-nudge-item-info">
+          <div class="suite-nudge-item-name">Love Language: Receiving</div>
+          <div class="suite-nudge-item-desc">Apa yang bikin kamu merasa dicintai?</div>
+        </div>
+        <span class="suite-nudge-cs">Segera</span>
+      </button>
+      <button class="suite-nudge-item soon" disabled>
+        <span class="suite-nudge-item-icon">💌</span>
+        <div class="suite-nudge-item-info">
+          <div class="suite-nudge-item-name">Love Language: Giving</div>
+          <div class="suite-nudge-item-desc">Bagaimana cara kamu mengekspresikan cinta?</div>
+        </div>
+        <span class="suite-nudge-cs">Segera</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="signInOverlay" onclick="handleOverlayClick(event)">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-icon-row"><div class="sheet-lock-icon">🔐</div></div>
+    <div class="sheet-title">Simpan & Lihat Laporan Lengkap</div>
+    <p class="sheet-sub">Masuk untuk membuka laporan detail tipe cintamu — gratis.</p>
+    <div class="sheet-warning">
+      <span class="sheet-warning-icon">⚠️</span>
+      <span class="sheet-warning-text">Kalau kamu tutup halaman ini tanpa masuk, hasil tes kamu akan hilang dan perlu ngulang dari awal.</span>
+    </div>
+    <button class="google-btn" id="googleBtn" onclick="handleSignIn()">
+      <svg width="20" height="20" viewBox="0 0 48 48">
+        <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+        <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+        <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+        <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.36-8.16 2.36-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+      </svg>
+      <span class="google-btn-label">Masuk dengan Google</span>
+      <div class="google-spinner"></div>
+    </button>
+    <button class="sheet-cancel" onclick="closeOverlay()">Nanti aja</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const LOVE_LIBRARY = {
+  'Consummate Love': {
+    emoji: '❤️', bg: 'linear-gradient(135deg, #F9EEF1, #FBDAE6, #F49CBB)', pola: 'Nyaman · Spark · Komitmen',
+    desc: 'Kamu nyaman dan dekat sama dia, ada spark yang kuat, dan juga punya keinginan untuk menjaga hubungan ini dalam jangka panjang.',
+  },
+  'Romantic Love': {
+    emoji: '✨', bg: 'linear-gradient(135deg, #F9E8F5, #D4A0D0, #8A2080)', pola: 'Dekat · Spark',
+    desc: 'Kamu merasa dekat dan nyambung sama dia, ada chemistry yang bikin berdebar, tapi arah komitmennya mungkin belum sepenuhnya jelas.',
+  },
+  'Companionate Love': {
+    emoji: '🤝', bg: 'linear-gradient(135deg, #E8F0F8, #A0B8D8, #2060A0)', pola: 'Dekat · Komitmen',
+    desc: 'Kamu merasa aman, nyaman, dan stabil sama dia. Hubungan ini terasa hangat, meskipun spark-nya mungkin nggak terlalu dominan.',
+  },
+  'Liking': {
+    emoji: '🌱', bg: 'linear-gradient(135deg, #E8F5EE, #A0D0B8, #2D7A5C)', pola: 'Dekat',
+    desc: 'Kamu merasa dekat dan nyaman sama dia, tapi rasa romantis atau dorongan untuk serius belum terlalu kuat.',
+  },
+  'Fatuous Love': {
+    emoji: '🎡', bg: 'linear-gradient(135deg, #FFF0E8, #F0A880, #C06020)', pola: 'Spark · Komitmen',
+    desc: 'Kamu merasa tertarik banget dan ada dorongan untuk serius, tapi kedekatan emosionalnya mungkin belum terlalu dalam.',
+  },
+  'Infatuation': {
+    emoji: '💫', bg: 'linear-gradient(135deg, #F0E8FF, #C0A0F0, #6020C0)', pola: 'Spark',
+    desc: 'Kamu merasa sangat tertarik sama dia. Ada spark dan rasa penasaran, tapi kedekatan emosional dan komitmennya belum terlalu terbentuk.',
+  },
+  'Empty Love': {
+    emoji: '🏛️', bg: 'linear-gradient(135deg, #EEEEF4, #A0A0C0, #404070)', pola: 'Komitmen',
+    desc: 'Kamu merasa ada komitmen atau tanggung jawab untuk bertahan, tapi rasa dekat dan chemistry-nya mungkin sedang tidak terlalu terasa.',
+  },
+  'Nonlove': {
+    emoji: '🌫️', bg: 'linear-gradient(135deg, #F4F4F0, #C8C0B8, #807870)', pola: 'Masih berkembang',
+    desc: 'Perasaanmu ke dia masih belum punya bentuk yang jelas. Bisa jadi masih berkembang, masih bingung, atau belum cukup kuat.',
+  },
+};
+
+const resultRaw = localStorage.getItem('loveResult');
+if (!resultRaw) { window.location.href = 'quiz.html'; }
+
+const result = JSON.parse(resultRaw);
+const data   = LOVE_LIBRARY[result.type] || LOVE_LIBRARY['Nonlove'];
+
+const TYPE_IMG = {
+  'Consummate Love':  'assets/consummate-love.png',
+  'Romantic Love':    'assets/romantic-love.png',
+  'Companionate Love':'assets/companionate-love.png',
+  'Liking':           'assets/liking.png',
+  'Fatuous Love':     'assets/fatuous-love.png',
+  'Infatuation':      'assets/infatuation.png',
+  'Empty Love':       'assets/empty-love.png',
+  'Nonlove':          'assets/nonlove.png',
+};
+
+document.getElementById('typeName').textContent   = result.type;
+document.getElementById('piImg').src              = TYPE_IMG[result.type] || 'assets/nonlove.png';
+document.getElementById('piLabel').textContent    = data.pola;
+document.getElementById('vibesBlock').textContent = data.desc;
+
+const fmt = v => (Math.round(v * 10) / 10).toFixed(1) + ' / 5';
+
+function animateStat(barId, valId, target, delay) {
+  setTimeout(() => {
+    document.getElementById(barId).style.width = (target / 5 * 100) + '%';
+    const t0 = performance.now(), dur = 1000;
+    (function tick(now) {
+      const p = Math.min((now - t0) / dur, 1);
+      const e = 1 - Math.pow(1 - p, 3);
+      document.getElementById(valId).textContent = (target * e).toFixed(1) + ' / 5';
+      if (p < 1) requestAnimationFrame(tick);
+      else document.getElementById(valId).textContent = fmt(target);
+    })(t0);
+  }, delay);
+}
+
+requestAnimationFrame(() => requestAnimationFrame(() => {
+  animateStat('barI', 'scoreI', result.intimacyAvg, 300);
+  animateStat('barP', 'scoreP', result.passionAvg,  500);
+  animateStat('barC', 'scoreC', result.commitAvg,   700);
+}));
+
+// Confetti petal burst
+(function burst() {
+  const C = document.createElement('canvas');
+  C.style.cssText = 'position:fixed;inset:0;pointer-events:none;z-index:999;';
+  C.width = window.innerWidth; C.height = window.innerHeight;
+  document.body.appendChild(C);
+  const ctx = C.getContext('2d');
+  const colors = ['#F49CBB','#FBDAE6','#D4607E','#F7D6DC','#FBE8EF','#C4923A'];
+  const P = Array.from({length:52}, () => ({
+    x: Math.random() * C.width, y: -8 - Math.random() * 35,
+    vx: (Math.random()-0.5) * 2.4, vy: 1.6 + Math.random() * 2.8,
+    g: 0.055 + Math.random() * 0.04,
+    size: 5 + Math.random() * 7,
+    color: colors[Math.floor(Math.random() * colors.length)],
+    rot: Math.random() * Math.PI * 2,
+    rs: (Math.random()-0.5) * 0.13,
+    heart: Math.random() > 0.38
+  }));
+  let f = 0; const max = 135;
+  function draw(now) {
+    ctx.clearRect(0, 0, C.width, C.height); f++;
+    P.forEach(p => {
+      p.x += p.vx; p.y += p.vy; p.vy += p.g; p.rot += p.rs;
+      const a = Math.max(0, 1 - (f / max) * 1.25);
+      ctx.save(); ctx.globalAlpha = a; ctx.fillStyle = p.color;
+      ctx.translate(p.x, p.y); ctx.rotate(p.rot);
+      if (p.heart) {
+        const s = p.size / 10;
+        ctx.scale(s, s);
+        ctx.beginPath();
+        ctx.moveTo(0,-3); ctx.bezierCurveTo(4,-7,10,-2,0,5); ctx.bezierCurveTo(-10,-2,-4,-7,0,-3);
+        ctx.fill();
+      } else {
+        ctx.beginPath(); ctx.arc(0, 0, p.size / 2, 0, Math.PI * 2); ctx.fill();
+      }
+      ctx.restore();
+    });
+    if (f < max) requestAnimationFrame(draw); else C.remove();
+  }
+  requestAnimationFrame(draw);
+})();
+
+function goToReport() {
+  if (localStorage.getItem('userSignedIn') === 'true') {
+    window.location.href = 'report.html';
+  } else {
+    document.getElementById('signInOverlay').classList.add('open');
+  }
+}
+function handleSignIn() {
+  const btn = document.getElementById('googleBtn');
+  btn.classList.add('loading'); btn.disabled = true;
+  setTimeout(() => {
+    localStorage.setItem('userSignedIn', 'true');
+    window.location.href = 'report.html';
+  }, 1600);
+}
+function closeOverlay() { document.getElementById('signInOverlay').classList.remove('open'); }
+function handleOverlayClick(e) { if (e.target.id === 'signInOverlay') closeOverlay(); }
+function doRetry() {
+  localStorage.removeItem('loveAnswers'); localStorage.removeItem('loveResult');
+  window.location.href = 'index.html';
+}
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2200);
+}
+function getShareText() { return `Aku baru tes Love Type: ${result.type} ${data.emoji}\nCoba di bakat.id`; }
+function shareWA()   { window.open(`https://wa.me/?text=${encodeURIComponent(getShareText())}`, '_blank'); }
+function shareX()    { window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(getShareText())}`, '_blank'); }
+function shareIG()   { showToast('Screenshot dulu, baru share ke Instagram 📸'); }
+function copyLink()  { navigator.clipboard.writeText(window.location.href).then(() => showToast('Link disalin! 🔗')); }
+function shareResult() {
+  if (navigator.share) { navigator.share({ title: `Love Type: ${result.type}`, text: getShareText(), url: window.location.href }); }
+  else copyLink();
+}
+</script>
+</body>
+</html>

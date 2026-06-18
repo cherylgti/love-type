@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Love Type Report – bakat.id</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --rose: #F49CBB;
+  --rose-light: #FBDAE6;
+  --rose-pale: #FDF3F6;
+  --rose-deep: #D4607E;
+  --cream: #FBF6F0;
+  --warm-white: #FEFCFA;
+  --ink: #7D2040;
+  --ink-mid: #4A2D35;
+  --ink-muted: #8C6870;
+  --gold: #C4923A;
+  --green: #2D7A5C;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+html, body { font-family: 'DM Sans', system-ui, sans-serif; color: var(--ink); min-height: 100%; background: var(--warm-white); }
+.bg { position: fixed; inset: 0; z-index: 0; background: radial-gradient(ellipse at 50% 0%, rgba(244,156,187,0.05) 0%, transparent 60%); pointer-events: none; }
+.app { position: relative; z-index: 1; max-width: 430px; margin: 0 auto; min-height: 100dvh; display: flex; flex-direction: column; padding-bottom: calc(40px + env(safe-area-inset-bottom)); }
+
+/* HEADER */
+.header { display: flex; align-items: center; gap: 10px; padding: 18px 20px 6px; }
+.back-btn { width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid rgba(244,156,187,0.20); background: rgba(244,156,187,0.05); display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 16px; color: var(--rose); transition: background 0.18s, transform 0.15s; flex-shrink: 0; }
+.back-btn:hover { background: rgba(244,156,187,0.10); }
+.back-btn:active { transform: scale(0.92); }
+.logo { font-size: 15px; font-weight: 700; letter-spacing: 0.02em; color: var(--ink); flex: 1; text-align: center; }
+.report-badge { font-size: 10px; font-weight: 500; letter-spacing: 0.10em; text-transform: uppercase; color: var(--rose); background: rgba(244,156,187,0.08); border: 1px solid rgba(244,156,187,0.18); border-radius: 100px; padding: 3px 10px; }
+
+/* HERO */
+.hero { text-align: center; padding: 14px 24px 0; }
+.hero-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--rose); margin-bottom: 4px; }
+.hero-type { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(26px, 7.5vw, 34px); font-weight: 700; color: var(--ink); line-height: 1.1; margin-bottom: 3px; }
+.hero-pola { font-size: 12px; font-weight: 400; color: var(--ink-muted); }
+
+/* TIGA SISI CARD (bars + triangle unified) */
+.tiga-sisi-card { margin: 16px 20px 0; background: rgba(244,156,187,0.04); border: 1px solid rgba(244,156,187,0.14); border-radius: 18px; padding: 16px 16px 14px; }
+.tiga-sisi-title { text-align: center; font-family: 'Playfair Display', Georgia, serif; font-size: 12px; font-weight: 700; color: var(--rose-deep); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 14px; }
+.scores-inner { padding: 0 4px; }
+.triangle-inner { margin-top: 10px; display: flex; justify-content: center; }
+
+/* SCORES */
+.score-row { margin-bottom: 16px; }
+.score-row:last-child { margin-bottom: 0; }
+.score-label-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+.score-label-group { display: flex; align-items: center; gap: 6px; }
+.score-dim-label { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-muted); }
+.score-level-badge { font-size: 10px; font-weight: 600; letter-spacing: 0.04em; padding: 2px 7px; border-radius: 100px; }
+.score-val { font-size: 12px; font-weight: 700; }
+.score-dim-desc { font-size: 11.5px; color: var(--ink-muted); line-height: 1.6; margin-top: 7px; }
+.score-bar-track { height: 5px; border-radius: 5px; background: rgba(244,156,187,0.10); overflow: hidden; }
+.score-bar-fill { height: 100%; border-radius: 5px; transition: width 0.9s cubic-bezier(0.4,0,0.2,1); width: 0%; }
+.fill-i, .fill-p, .fill-c { background: linear-gradient(90deg, var(--rose-light), var(--rose)); }
+.score-legend-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+
+/* INSIGHTS 2-col */
+.insights-section { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 16px 20px 0; align-items: start; }
+.insights-col-title { font-size: 10px; font-weight: 600; letter-spacing: 0.10em; text-transform: uppercase; margin-bottom: 8px; }
+.col-strength .insights-col-title { color: var(--green); }
+.col-awareness .insights-col-title { color: var(--rose-deep); }
+.insights-section .list-card { padding: 10px 10px; gap: 7px; }
+.insights-section .list-icon { font-size: 13px; }
+.insights-section .list-head { font-size: 11.5px; }
+.insights-section .list-desc { font-size: 11px; line-height: 1.55; }
+
+/* DIVIDER */
+.divider { height: 1px; margin: 18px 20px 0; background: linear-gradient(90deg, transparent, rgba(244,156,187,0.18), transparent); }
+
+/* SECTIONS */
+.section { padding: 16px 20px 0; }
+.sec-title { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 10px; }
+.overall-block { padding: 18px 20px 16px; background: rgba(244,156,187,0.05); border: 1px solid rgba(244,156,187,0.15); border-radius: 14px; position: relative; overflow: hidden; }
+.overall-block::before { content: '❝'; position: absolute; top: -4px; left: 6px; font-size: 54px; line-height: 1; color: var(--rose-light); opacity: 0.25; font-family: 'Playfair Display', Georgia, serif; pointer-events: none; }
+.overall-text { font-family: 'Playfair Display', Georgia, serif; font-size: 13.5px; font-style: italic; font-weight: 400; color: var(--ink-mid); line-height: 1.75; }
+
+/* LIST CARDS */
+.list-cards { display: flex; flex-direction: column; gap: 8px; }
+.list-card { display: flex; align-items: flex-start; gap: 10px; padding: 12px 14px; border-radius: 12px; }
+.list-card.strength { background: rgba(45,122,92,0.06); border: 1px solid rgba(45,122,92,0.20); }
+.list-card.awareness { background: rgba(244,156,187,0.05); border: 1px solid rgba(244,156,187,0.18); }
+.list-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+.list-head { font-size: 13px; font-weight: 500; margin-bottom: 2px; }
+.list-card.strength .list-head { color: var(--green); }
+.list-card.awareness .list-head { color: var(--rose-deep); }
+.list-desc { font-size: 12px; font-weight: 400; color: var(--ink-muted); line-height: 1.6; }
+
+/* ASPEK */
+.aspek-cards { display: flex; flex-direction: column; gap: 10px; }
+.aspek-card { padding: 14px 16px; border-radius: 14px; border: 1px solid rgba(244,156,187,0.12); background: rgba(244,156,187,0.03); }
+.aspek-label-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+.aspek-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.aspek-label { font-size: 10.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+.aspek-desc { font-size: 12.5px; font-weight: 400; color: var(--ink-mid); line-height: 1.65; }
+
+/* REMINDER */
+.reminder { margin: 16px 20px 0; padding: 14px 16px; background: rgba(244,156,187,0.04); border: 1px solid rgba(244,156,187,0.15); border-radius: 14px; }
+.reminder-text { font-size: 12.5px; font-weight: 400; color: var(--ink-muted); line-height: 1.65; text-align: center; }
+.reminder-text strong { color: var(--rose); font-weight: 500; }
+
+/* ACTIONS */
+.actions { padding: 18px 20px 0; display: flex; flex-direction: column; gap: 9px; }
+.cta-primary { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; border: none; border-radius: 100px; padding: 14px 24px; background: var(--rose); box-shadow: 0 4px 20px rgba(244,156,187,0.28); cursor: pointer; font-family: 'DM Sans', system-ui, sans-serif; font-weight: 500; font-size: 14px; color: #7D2040; transition: transform 0.18s, box-shadow 0.18s, background 0.18s; }
+.cta-primary:hover { background: var(--rose-deep); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(244,156,187,0.36); }
+.cta-primary:active { transform: scale(0.97); }
+.cta-secondary { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; border: 1.5px solid var(--rose); border-radius: 100px; padding: 13px 24px; background: transparent; cursor: pointer; font-family: 'DM Sans', system-ui, sans-serif; font-weight: 500; font-size: 13px; color: var(--rose); transition: transform 0.18s, opacity 0.18s; }
+.cta-secondary:hover { opacity: 0.72; }
+
+/* POLAROID */
+.card-section { display: flex; justify-content: center; padding: 0 20px; }
+.card-wrap { position: relative; margin-top: 20px; margin-bottom: 10px; }
+.polaroid { background: linear-gradient(180deg,#f7ede0 0%,#ede2d0 100%); border-radius: 16px; padding: 9px 9px 24px; width: min(240px,calc(100vw - 60px)); box-shadow: rgba(244,156,187,0.16) 0 8px 36px, rgba(255,248,245,0.60) 2px 2px 0 inset, rgba(244,156,187,0.08) 0 22px 55px, rgba(0,0,0,0.06) 0 5px 14px; transform: rotate(2.5deg); animation: polFloat 5.5s ease-in-out infinite 0.6s; position: relative; z-index: 2; }
+@keyframes polFloat { 0%,100% { transform: rotate(2.5deg) translateY(0); } 50% { transform: rotate(2.5deg) translateY(-8px); } }
+.pi { border-radius: 9px; overflow: hidden; height: 176px; position: relative; }
+.pi-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
+.pi-label { position: absolute; bottom: 0; left: 0; right: 0; z-index: 3; padding: 28px 10px 8px; background: linear-gradient(transparent,rgba(0,0,0,0.75)); font-size: 11.5px; font-weight: 700; color: #fff; text-align: center; line-height: 1.2; text-shadow: 0 1px 4px rgba(0,0,0,0.7); }
+
+/* SUITE NUDGE */
+.suite-nudge { padding: 20px 20px 0; border-top: 1px solid rgba(244,156,187,0.18); margin-top: 18px; }
+.suite-nudge-text { font-size: 12.5px; color: var(--ink-muted); line-height: 1.75; text-align: center; margin-bottom: 14px; }
+.suite-nudge-text em { font-style: normal; color: var(--rose-deep); font-weight: 500; }
+.suite-nudge-list { display: flex; flex-direction: column; gap: 8px; }
+.suite-nudge-item { display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-radius: 12px; background: rgba(244,156,187,0.07); border: 1px solid rgba(244,156,187,0.18); cursor: pointer; text-align: left; font-family: 'DM Sans', system-ui, sans-serif; width: 100%; transition: background 0.18s; }
+.suite-nudge-item:hover { background: rgba(244,156,187,0.14); }
+.suite-nudge-item.soon { opacity: 0.52; cursor: default; pointer-events: none; }
+.suite-nudge-cs { font-size: 9.5px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-muted); background: rgba(140,104,112,0.09); border: 1px solid rgba(140,104,112,0.16); border-radius: 100px; padding: 2px 8px; flex-shrink: 0; white-space: nowrap; }
+.suite-nudge-item-icon { font-size: 20px; flex-shrink: 0; }
+.suite-nudge-item-info { flex: 1; min-width: 0; }
+.suite-nudge-item-name { font-size: 12.5px; font-weight: 600; color: var(--rose-deep); margin-bottom: 2px; }
+.suite-nudge-item-desc { font-size: 11px; color: var(--ink-muted); line-height: 1.4; }
+.suite-nudge-item-arrow { font-size: 14px; color: var(--rose); flex-shrink: 0; }
+
+/* SPARKLES */
+.sp { position: fixed; background: var(--rose-light); border-radius: 50%; pointer-events: none; animation: spTwinkle var(--d,2s) ease-in-out infinite var(--dl,0s); }
+@keyframes spTwinkle { 0%,100% { opacity:0.06; transform:scale(0.3); } 50% { opacity:0.45; transform:scale(1); } }
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="sp" style="width:3px;height:3px;top:12%;left:7%;--d:2.5s;--dl:0s"></div>
+<div class="sp" style="width:2px;height:2px;top:40%;left:94%;--d:3.2s;--dl:1s"></div>
+<div class="sp" style="width:4px;height:4px;top:70%;left:4%;--d:2.1s;--dl:0.5s"></div>
+
+<div class="app">
+  <div class="header">
+    <button class="back-btn" onclick="history.back()">&#8592;</button>
+    <div class="logo">bakat.id</div>
+    <span class="report-badge">Report</span>
+  </div>
+
+  <div class="hero">
+    <div class="hero-eyebrow">&#10022; Laporan Lengkap</div>
+    <div class="hero-type" id="heroType">&#8212;</div>
+    <div class="hero-pola" id="heroPola">&#8212;</div>
+  </div>
+
+  <div class="card-section">
+    <div class="card-wrap">
+      <div class="polaroid">
+        <div class="pi">
+          <img class="pi-img" id="piImg" src="" alt="">
+          <div class="pi-label" id="piLabel">—</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="overall-block"><p class="overall-text" id="overallText"></p></div>
+  </div>
+
+  <div class="tiga-sisi-card">
+    <div class="tiga-sisi-title">3 Sisi Cinta Kamu</div>
+    <div class="scores-inner">
+      <div class="score-row">
+        <div class="score-label-row">
+          <div class="score-label-group">
+            <span class="score-legend-dot" style="background:#7B9BB8"></span>
+            <span class="score-dim-label">Nyaman &amp; Dekat</span>
+            <span class="score-level-badge" id="lvlI"></span>
+          </div>
+          <span class="score-val" id="valI" style="color:var(--rose-deep)">&#8212;</span>
+        </div>
+        <div class="score-bar-track"><div class="score-bar-fill fill-i" id="barI"></div></div>
+        <div class="score-dim-desc" id="descI"></div>
+      </div>
+      <div class="score-row">
+        <div class="score-label-row">
+          <div class="score-label-group">
+            <span class="score-legend-dot" style="background:#C4736A"></span>
+            <span class="score-dim-label">Spark &amp; Chemistry</span>
+            <span class="score-level-badge" id="lvlP"></span>
+          </div>
+          <span class="score-val" id="valP" style="color:var(--rose-deep)">&#8212;</span>
+        </div>
+        <div class="score-bar-track"><div class="score-bar-fill fill-p" id="barP"></div></div>
+        <div class="score-dim-desc" id="descP"></div>
+      </div>
+      <div class="score-row">
+        <div class="score-label-row">
+          <div class="score-label-group">
+            <span class="score-legend-dot" style="background:#7B9E8A"></span>
+            <span class="score-dim-label">Serius &amp; Bertahan</span>
+            <span class="score-level-badge" id="lvlC"></span>
+          </div>
+          <span class="score-val" id="valC" style="color:var(--rose-deep)">&#8212;</span>
+        </div>
+        <div class="score-bar-track"><div class="score-bar-fill fill-c" id="barC"></div></div>
+        <div class="score-dim-desc" id="descC"></div>
+      </div>
+    </div>
+    <div class="triangle-inner">
+      <svg id="triangleSvg" width="310" height="280" viewBox="0 0 310 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="155,24 295,252 15,252" stroke="rgba(244,156,187,0.20)" stroke-width="1.5" fill="rgba(244,156,187,0.04)" stroke-linejoin="round"/>
+        <polygon id="ring25" fill="none" stroke="rgba(244,156,187,0.08)" stroke-width="1" stroke-dasharray="4 4"/>
+        <polygon id="ring50" fill="none" stroke="rgba(244,156,187,0.08)" stroke-width="1" stroke-dasharray="4 4"/>
+        <polygon id="ring75" fill="none" stroke="rgba(244,156,187,0.08)" stroke-width="1" stroke-dasharray="4 4"/>
+        <line id="axisI" stroke="rgba(123,155,184,0.20)" stroke-width="1" stroke-dasharray="3 3"/>
+        <line id="axisP" stroke="rgba(196,115,106,0.20)" stroke-width="1" stroke-dasharray="3 3"/>
+        <line id="axisC" stroke="rgba(123,158,138,0.20)" stroke-width="1" stroke-dasharray="3 3"/>
+        <polygon id="scorePoly" fill="rgba(244,156,187,0.14)" stroke="#F49CBB" stroke-width="2" stroke-linejoin="round"/>
+        <circle id="dotI" r="5" fill="#7B9BB8" stroke="#fff" stroke-width="2"/>
+        <circle id="dotP" r="5" fill="#C4736A" stroke="#fff" stroke-width="2"/>
+        <circle id="dotC" r="5" fill="#7B9E8A" stroke="#fff" stroke-width="2"/>
+        <text x="155" y="14" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="10" font-weight="700" fill="#7B9BB8" letter-spacing="0.08em">NYAMAN &amp; DEKAT</text>
+        <text x="302" y="268" text-anchor="end"    font-family="'DM Sans',system-ui,sans-serif" font-size="10" font-weight="700" fill="#C4736A" letter-spacing="0.08em">SPARK &amp; CHEMISTRY</text>
+        <text x="8"   y="268" text-anchor="start"  font-family="'DM Sans',system-ui,sans-serif" font-size="10" font-weight="700" fill="#7B9E8A" letter-spacing="0.08em">SERIUS &amp; BERTAHAN</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="insights-section">
+    <div class="insights-col col-strength">
+      <div class="insights-col-title">Yang kuat</div>
+      <div class="list-cards" id="strengthList"></div>
+    </div>
+    <div class="insights-col col-awareness">
+      <div class="insights-col-title">Yang perlu disadari</div>
+      <div class="list-cards" id="awareList"></div>
+    </div>
+  </div>
+
+  <div class="reminder">
+    <p class="reminder-text">Hasil ini menggambarkan kondisi perasaanmu <strong>saat ini</strong>, bukan kepribadian tetap. Cinta bisa tumbuh dan berubah seiring waktu. &#127807;</p>
+  </div>
+
+  <div class="suite-nudge">
+    <p class="suite-nudge-text">Cinta punya lebih dari satu sisi. <em>Romantic Profile</em> punya 4 subtes — kamu baru kenal satu.</p>
+    <div class="suite-nudge-list">
+      <button class="suite-nudge-item">
+        <span class="suite-nudge-item-icon">⚡</span>
+        <div class="suite-nudge-item-info">
+          <div class="suite-nudge-item-name">Conflict Language</div>
+          <div class="suite-nudge-item-desc">Gimana kamu saat ada gesekan dalam hubungan?</div>
+        </div>
+        <span class="suite-nudge-item-arrow">→</span>
+      </button>
+      <button class="suite-nudge-item soon" disabled>
+        <span class="suite-nudge-item-icon">🎁</span>
+        <div class="suite-nudge-item-info">
+          <div class="suite-nudge-item-name">Love Language: Receiving</div>
+          <div class="suite-nudge-item-desc">Apa yang bikin kamu merasa dicintai?</div>
+        </div>
+        <span class="suite-nudge-cs">Segera</span>
+      </button>
+      <button class="suite-nudge-item soon" disabled>
+        <span class="suite-nudge-item-icon">💌</span>
+        <div class="suite-nudge-item-info">
+          <div class="suite-nudge-item-name">Love Language: Giving</div>
+          <div class="suite-nudge-item-desc">Bagaimana cara kamu mengekspresikan cinta?</div>
+        </div>
+        <span class="suite-nudge-cs">Segera</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button class="cta-primary" onclick="window.location.href='result.html'">&#8592; Kembali ke Hasil</button>
+    <button class="cta-secondary" onclick="doRetry()">&#128260; Ulang Assessment</button>
+  </div>
+</div>
+
+<script>
+const LOVE_REPORT = {
+  'Consummate Love': {
+    pola: 'Intimacy · Passion · Commitment',
+    overall: 'Kamu mengalami bentuk cinta yang paling lengkap menurut Sternberg — ada kedekatan emosional yang hangat, daya tarik yang kuat, dan keinginan yang tulus untuk menjaga hubungan ini. Cinta seperti ini jarang dan butuh dijaga dengan sepenuh hati.',
+    strengths: [
+      { head: 'Kedekatan Emosional yang Dalam', desc: 'Kamu merasa benar-benar terhubung dan dipahami, menciptakan rasa aman yang langka.' },
+      { head: 'Spark yang Terjaga', desc: 'Daya tarik dan chemistry di antara kalian tetap terasa nyata dan hidup.' },
+      { head: 'Komitmen yang Tulus', desc: 'Kamu mau merawat hubungan ini dalam jangka panjang, bukan sekadar ikut arus.' },
+    ],
+    awareness: [
+      { head: 'Ekspektasi yang Terlalu Tinggi', desc: 'Consummate love bisa terasa berat dipertahankan. Pastikan ekspektasi tetap realistis.' },
+      { head: 'Jangan Anggap Remeh', desc: 'Justru karena semuanya terasa baik, mudah untuk mulai cuek. Teruslah hadir.' },
+    ],
+    aspek: [
+      { label: 'Intimacy', color: '#F49CBB', dot: '#F49CBB', desc: 'Rasa dekat, hangat, dan nyaman yang kamu rasakan sangat kuat. Kamu merasa aman untuk jadi diri sendiri.' },
+      { label: 'Passion', color: '#C4923A', dot: '#C4923A', desc: 'Ada spark yang jelas — daya tarik yang bikin berdebar dan rasa tak tergantikan.' },
+      { label: 'Commitment', color: '#2D7A5C', dot: '#2D7A5C', desc: 'Kamu punya niat dan keyakinan untuk mempertahankan hubungan ini ke depannya.' },
+    ],
+  },
+  'Romantic Love': {
+    pola: 'Intimacy · Passion',
+    overall: 'Kamu merasakan kedekatan emosional yang hangat sekaligus spark yang bikin berdebar. Hubungan ini terasa hidup dan nyata — meski arah jangka panjangnya mungkin belum sepenuhnya terbentuk.',
+    strengths: [
+      { head: 'Chemistry yang Terasa Nyata', desc: 'Ada daya tarik yang kuat dan rasa saling terhubung yang membuat momen bersama jadi berarti.' },
+      { head: 'Keterbukaan Emosional', desc: 'Kamu cukup nyaman untuk menunjukkan perasaan dan jadi diri sendiri di dekat dia.' },
+    ],
+    awareness: [
+      { head: 'Arah yang Belum Jelas', desc: 'Tanpa komitmen yang terbentuk, hubungan ini bisa terasa mengambang. Perlu percakapan yang jujur.' },
+      { head: 'Jangan Bergantung Hanya pada Perasaan', desc: 'Cinta romantis bisa fluktuatif. Bangun fondasi yang lebih solid secara bertahap.' },
+    ],
+    aspek: [
+      { label: 'Intimacy', color: '#F49CBB', dot: '#F49CBB', desc: 'Kamu merasa dekat dan nyambung secara emosional. Ada rasa dipahami yang terasa nyata.' },
+      { label: 'Passion', color: '#C4923A', dot: '#C4923A', desc: 'Spark-nya terasa kuat — ada sesuatu yang bikin kamu tertarik dan tetap ingin dekat.' },
+      { label: 'Commitment', color: '#2D7A5C', dot: '#2D7A5C', desc: 'Komitmen jangka panjang belum terlalu kuat terbentuk. Bisa berkembang seiring waktu.' },
+    ],
+  },
+  'Companionate Love': {
+    pola: 'Intimacy · Commitment',
+    overall: 'Kamu membangun hubungan yang hangat, aman, dan stabil. Kedekatan emosional dan komitmen yang kamu rasakan adalah fondasi yang sangat kuat — meskipun spark-nya mungkin tidak sepanas di awal.',
+    strengths: [
+      { head: 'Rasa Aman yang Dalam', desc: 'Kamu merasa benar-benar aman dan nyaman di dekat dia — sebuah fondasi yang langka.' },
+      { head: 'Komitmen yang Matang', desc: 'Ada keseriusan dan kesediaan untuk merawat hubungan ini dalam jangka panjang.' },
+    ],
+    awareness: [
+      { head: 'Jaga Spark Tetap Hidup', desc: 'Keintiman dan komitmen yang kuat bisa membuat hubungan terasa "datar". Sisihkan momen untuk menghadirkan kejutan kecil.' },
+    ],
+    aspek: [
+      { label: 'Intimacy', color: '#F49CBB', dot: '#F49CBB', desc: 'Kamu merasa sangat dekat dan dipahami — ada kehangatan yang stabil dan konstan.' },
+      { label: 'Passion', color: '#C4923A', dot: '#C4923A', desc: 'Spark mungkin tidak terlalu dominan saat ini, tapi bisa tumbuh dengan perhatian yang tepat.' },
+      { label: 'Commitment', color: '#2D7A5C', dot: '#2D7A5C', desc: 'Komitmenmu kuat dan tulus — kamu ingin hubungan ini bertahan dan berkembang.' },
+    ],
+  },
+  'Liking': {
+    pola: 'Intimacy',
+    overall: 'Kamu merasakan kedekatan dan kenyamanan yang genuine di dekat dia. Ini adalah benih yang baik — banyak hubungan mendalam dimulai dari rasa nyaman seperti ini, sebelum passion dan komitmen tumbuh.',
+    strengths: [
+      { head: 'Kenyamanan yang Tulus', desc: 'Kamu benar-benar merasa nyaman dan bisa jadi diri sendiri — itu adalah hal yang berharga.' },
+      { head: 'Fondasi Persahabatan', desc: 'Hubungan yang dimulai dari keintiman emosional yang kuat punya fondasi yang solid.' },
+    ],
+    awareness: [
+      { head: 'Apakah Ada yang Lebih?', desc: 'Refleksikan apakah perasaan ini hanya nyaman, atau ada benih romantis yang belum tumbuh.' },
+      { head: 'Komunikasikan Harapanmu', desc: 'Kalau kamu ingin lebih, penting untuk jujur — baik ke diri sendiri maupun ke dia.' },
+    ],
+    aspek: [
+      { label: 'Intimacy', color: '#F49CBB', dot: '#F49CBB', desc: 'Kamu merasa dekat, nyaman, dan dipahami — ini adalah kekuatan utama hubunganmu.' },
+      { label: 'Passion', color: '#C4923A', dot: '#C4923A', desc: 'Ketertarikan romantis belum terlalu terasa. Bisa datang seiring kebersamaan.' },
+      { label: 'Commitment', color: '#2D7A5C', dot: '#2D7A5C', desc: 'Komitmen jangka panjang belum terbentuk. Wajar di tahap awal.' },
+    ],
+  },
+  'Fatuous Love': {
+    pola: 'Passion · Commitment',
+    overall: 'Kamu merasakan ketertarikan yang kuat dan ada dorongan untuk serius — tapi fondasi emosional yang dalam mungkin belum terlalu terbentuk. Hubungan seperti ini bisa sangat intens, dan penting untuk memberi ruang untuk saling mengenal lebih dalam.',
+    strengths: [
+      { head: 'Daya Tarik yang Kuat', desc: 'Ada chemistry yang nyata dan ketertarikan yang membuat kamu ingin maju dan berkomitmen.' },
+      { head: 'Keseriusan', desc: 'Kamu tidak setengah-setengah — ada niat untuk membangun sesuatu yang nyata.' },
+    ],
+    awareness: [
+      { head: 'Bangun Kedekatan Emosional', desc: 'Spark dan komitmen tanpa keintiman bisa membuat hubungan terasa seperti di atas fondasi yang rapuh.' },
+      { head: 'Luangkan Waktu untuk Mengenal', desc: 'Investasikan waktu untuk percakapan mendalam dan momen yang membangun kepercayaan.' },
+    ],
+    aspek: [
+      { label: 'Intimacy', color: '#F49CBB', dot: '#F49CBB', desc: 'Kedekatan emosional sedang berkembang. Ini adalah area yang paling butuh perhatian.' },
+      { label: 'Passion', color: '#C4923A', dot: '#C4923A', desc: 'Ada daya tarik yang kuat — perasaan ini nyata dan signifikan.' },
+      { label: 'Commitment', color: '#2D7A5C', dot: '#2D7A5C', desc: 'Kamu mau serius dan berkomitmen — itu menunjukkan niat yang tulus.' },
+    ],
+  },
+  'Infatuation': {
+    pola: 'Passion',
+    overall: 'Kamu merasakan ketertarikan yang sangat kuat — ada spark yang nyata dan intens. Ini adalah perasaan yang powerful, dan wajar adanya. Tapi ini juga saat yang tepat untuk refleksi: apakah ada lebih dari sekadar daya tarik?',
+    strengths: [
+      { head: 'Perasaan yang Intens dan Nyata', desc: 'Ketertarikanmu bukan rekaan — itu adalah sinyal emosi yang genuine.' },
+      { head: 'Energi yang Hidup', desc: 'Infatuation bisa menjadi bahan bakar untuk memulai sesuatu yang lebih dalam, kalau diarahkan dengan bijak.' },
+    ],
+    awareness: [
+      { head: 'Ketertarikan bukan Cinta', desc: 'Spark yang kuat tanpa kedekatan dan komitmen masih sangat rentan. Jangan terburu-buru.' },
+      { head: 'Kenali Dia, Bukan Hanya Ideamu tentang Dia', desc: 'Infatuation sering mengisi kekosongan dengan imajinasi. Investasikan waktu untuk mengenal dia yang sebenarnya.' },
+    ],
+    aspek: [
+      { label: 'Intimacy', color: '#F49CBB', dot: '#F49CBB', desc: 'Kedekatan emosional yang dalam belum terbentuk — ada potensi, tapi butuh waktu dan usaha.' },
+      { label: 'Passion', color: '#C4923A', dot: '#C4923A', desc: 'Ini adalah dimensi terkuatmu — ketertarikan dan chemistry yang sangat terasa.' },
+      { label: 'Commitment', color: '#2D7A5C', dot: '#2D7A5C', desc: 'Komitmen jangka panjang belum ada. Itu normal untuk tahap ini.' },
+    ],
+  },
+  'Empty Love': {
+    pola: 'Commitment',
+    overall: 'Kamu merasakan komitmen atau rasa tanggung jawab untuk bertahan, tapi kedekatan emosional dan spark mungkin sedang tidak terasa. Ini sering terjadi dalam hubungan jangka panjang yang butuh perhatian baru.',
+    strengths: [
+      { head: 'Kesetiaan', desc: 'Kamu tidak mudah menyerah — ada nilai yang kamu pegang dalam menjaga komitmen.' },
+      { head: 'Stabilitas', desc: 'Komitmen memberikan kerangka yang bisa dibangun ulang kalau ada kemauan dari kedua pihak.' },
+    ],
+    awareness: [
+      { head: 'Jangan Bertahan Hanya karena Takut', desc: 'Ada perbedaan antara komitmen yang penuh makna dan bertahan karena terasa lebih mudah.' },
+      { head: 'Rekindling adalah Pilihan', desc: 'Keintiman dan passion bisa dibangun ulang dengan usaha yang sadar dari kedua pihak.' },
+    ],
+    aspek: [
+      { label: 'Intimacy', color: '#F49CBB', dot: '#F49CBB', desc: 'Kedekatan emosional sedang tidak terasa kuat. Ini area yang butuh perhatian dan investasi.' },
+      { label: 'Passion', color: '#C4923A', dot: '#C4923A', desc: 'Spark sedang redup. Wajar terjadi, tapi perlu disadari dan direspons.' },
+      { label: 'Commitment', color: '#2D7A5C', dot: '#2D7A5C', desc: 'Komitmenmu adalah kekuatan — tapi pastikan didasarkan pada makna, bukan sekadar kebiasaan.' },
+    ],
+  },
+  'Nonlove': {
+    pola: 'Masih berkembang',
+    overall: 'Perasaanmu ke dia masih belum punya bentuk yang jelas. Bisa jadi masih berkembang, masih bingung, atau memang belum sampai ke level yang lebih dalam. Tidak ada yang salah dari titik ini.',
+    strengths: [
+      { head: 'Kejujuran dengan Diri Sendiri', desc: 'Menyadari bahwa perasaan belum kuat adalah bentuk kejujuran yang berharga.' },
+      { head: 'Ruang untuk Berkembang', desc: 'Belum ada intensitas yang tinggi berarti belum ada tekanan — kamu bisa eksplorasi dengan santai.' },
+    ],
+    awareness: [
+      { head: 'Apa yang Sebenarnya Kamu Cari?', desc: 'Ini adalah waktu yang baik untuk refleksi tentang apa yang kamu butuhkan dari sebuah hubungan.' },
+      { head: 'Jangan Memaksakan', desc: 'Hubungan yang paling baik tumbuh secara organik. Beri waktu dan ruang.' },
+    ],
+    aspek: [
+      { label: 'Intimacy', color: '#F49CBB', dot: '#F49CBB', desc: 'Kedekatan emosional yang dalam belum terasa. Mungkin masih perlu waktu untuk terbentuk.' },
+      { label: 'Passion', color: '#C4923A', dot: '#C4923A', desc: 'Ketertarikan dan spark belum muncul dengan kuat. Ini bisa berubah.' },
+      { label: 'Commitment', color: '#2D7A5C', dot: '#2D7A5C', desc: 'Niat jangka panjang belum ada. Wajar di titik ini.' },
+    ],
+  },
+};
+
+if (localStorage.getItem('userSignedIn') !== 'true') { window.location.href = 'result.html'; }
+const resultRaw = localStorage.getItem('loveResult');
+if (!resultRaw) { window.location.href = 'quiz.html'; }
+const result = JSON.parse(resultRaw);
+const data   = LOVE_REPORT[result.type] || LOVE_REPORT['Nonlove'];
+
+document.getElementById('heroType').textContent = result.type;
+document.getElementById('heroPola').textContent = data.pola;
+document.getElementById('overallText').textContent = data.overall;
+
+const TYPE_IMG = {
+  'Consummate Love':  'assets/consummate-love.png',
+  'Romantic Love':    'assets/romantic-love.png',
+  'Companionate Love':'assets/companionate-love.png',
+  'Liking':           'assets/liking.png',
+  'Fatuous Love':     'assets/fatuous-love.png',
+  'Infatuation':      'assets/infatuation.png',
+  'Empty Love':       'assets/empty-love.png',
+  'Nonlove':          'assets/nonlove.png',
+};
+const TYPE_POLA = {
+  'Consummate Love': 'Nyaman · Spark · Komitmen',
+  'Romantic Love':   'Dekat · Spark',
+  'Companionate Love':'Dekat · Komitmen',
+  'Liking':          'Dekat',
+  'Fatuous Love':    'Spark · Komitmen',
+  'Infatuation':     'Spark',
+  'Empty Love':      'Komitmen',
+  'Nonlove':         'Masih berkembang',
+};
+document.getElementById('piImg').src          = TYPE_IMG[result.type] || 'assets/nonlove.png';
+document.getElementById('piLabel').textContent = TYPE_POLA[result.type] || 'Masih berkembang';
+
+function levelText(score) {
+  if (score >= 3.5) return 'Tinggi';
+  if (score >= 2.5) return 'Sedang';
+  return 'Rendah';
+}
+const DIM_LEVEL_DESC = {
+  I: {
+    Rendah: 'Kedekatan emosional dengan dia belum terlalu kuat, sehingga kamu mungkin belum sepenuhnya merasa aman untuk terbuka atau menjadi diri sendiri.',
+    Sedang: 'Ada rasa nyaman dan kedekatan yang cukup terasa, meskipun mungkin belum sepenuhnya terbuka satu sama lain.',
+    Tinggi: 'Kamu merasa sangat dekat dan dipahami — ada kehangatan dan rasa aman yang kuat di antara kalian.',
+  },
+  P: {
+    Rendah: 'Ketertarikan dan chemistry belum terlalu terasa saat ini. Bisa jadi masih berkembang, atau memang belum tumbuh.',
+    Sedang: 'Ada ketertarikan dan chemistry yang cukup terasa, meskipun belum selalu kuat atau dominan dalam hubungan ini.',
+    Tinggi: 'Spark-nya jelas dan kuat — ada daya tarik yang nyata yang bikin kamu terus ingin dekat dengannya.',
+  },
+  C: {
+    Rendah: 'Niat jangka panjang belum terbentuk. Masih wajar — komitmen butuh waktu dan keyakinan yang tumbuh bersama.',
+    Sedang: 'Ada keinginan untuk menjaga hubungan ini, tetapi kepastian dan arah jangka panjangnya mungkin masih perlu waktu untuk lebih jelas.',
+    Tinggi: 'Kamu punya komitmen yang tulus untuk mempertahankan hubungan ini ke depannya — itu bukan hal yang kecil.',
+  },
+};
+const LEVEL_STYLE = {
+  Rendah: { bg: 'rgba(244,156,187,0.10)', color: 'var(--rose-deep)' },
+  Sedang: { bg: 'rgba(244,156,187,0.18)', color: 'var(--rose-deep)' },
+  Tinggi: { bg: 'rgba(212,96,126,0.18)',  color: 'var(--rose-deep)' },
+};
+function setLevelBadge(badgeId, descId, score, dim) {
+  const lvl = levelText(score);
+  const badge = document.getElementById(badgeId);
+  badge.textContent = lvl;
+  badge.style.background = LEVEL_STYLE[lvl].bg;
+  badge.style.color = LEVEL_STYLE[lvl].color;
+  document.getElementById(descId).textContent = DIM_LEVEL_DESC[dim][lvl];
+}
+setLevelBadge('lvlI', 'descI', result.intimacyAvg, 'I');
+setLevelBadge('lvlP', 'descP', result.passionAvg,  'P');
+setLevelBadge('lvlC', 'descC', result.commitAvg,   'C');
+
+const fmt = v => (Math.round(v * 10) / 10).toFixed(1) + ' / 5';
+
+function animateStat(barId, valId, target, delay) {
+  setTimeout(() => {
+    document.getElementById(barId).style.width = (target / 5 * 100) + '%';
+    const t0 = performance.now(), dur = 1000;
+    (function tick(now) {
+      const p = Math.min((now - t0) / dur, 1);
+      const e = 1 - Math.pow(1 - p, 3);
+      document.getElementById(valId).textContent = (target * e).toFixed(1) + ' / 5';
+      if (p < 1) requestAnimationFrame(tick);
+      else document.getElementById(valId).textContent = fmt(target);
+    })(t0);
+  }, delay);
+}
+
+requestAnimationFrame(() => requestAnimationFrame(() => {
+  animateStat('barI', 'valI', result.intimacyAvg, 300);
+  animateStat('barP', 'valP', result.passionAvg,  500);
+  animateStat('barC', 'valC', result.commitAvg,   700);
+}));
+
+function buildList(id, items, cls, icon) {
+  const el = document.getElementById(id);
+  items.forEach(it => {
+    const d = document.createElement('div'); d.className = 'list-card ' + cls;
+    d.innerHTML = '<span class="list-icon">' + icon + '</span><div class="list-body"><div class="list-head">' + it.head + '</div><div class="list-desc">' + it.desc + '</div></div>';
+    el.appendChild(d);
+  });
+}
+buildList('strengthList', data.strengths, 'strength', '&#10003;');
+buildList('awareList',    data.awareness,  'awareness', '&#9873;');
+
+// Triangle SVG
+(function() {
+  const vI = {x:155, y:24}, vP = {x:295, y:252}, vC = {x:15, y:252};
+  const cx = (vI.x+vP.x+vC.x)/3, cy = (vI.y+vP.y+vC.y)/3;
+  function lerp(a, b, t) { return {x: a.x+(b.x-a.x)*t, y: a.y+(b.y-a.y)*t}; }
+  function pts(t) {
+    const ri=lerp({x:cx,y:cy},vI,t), rp=lerp({x:cx,y:cy},vP,t), rc=lerp({x:cx,y:cy},vC,t);
+    return ri.x+','+ri.y+' '+rp.x+','+rp.y+' '+rc.x+','+rc.y;
+  }
+  document.getElementById('ring25').setAttribute('points', pts(0.25));
+  document.getElementById('ring50').setAttribute('points', pts(0.50));
+  document.getElementById('ring75').setAttribute('points', pts(0.75));
+  function setLine(id, from, to) {
+    const el=document.getElementById(id);
+    el.setAttribute('x1',from.x); el.setAttribute('y1',from.y);
+    el.setAttribute('x2',to.x);   el.setAttribute('y2',to.y);
+  }
+  setLine('axisI',{x:cx,y:cy},vI); setLine('axisP',{x:cx,y:cy},vP); setLine('axisC',{x:cx,y:cy},vC);
+  const tI=Math.min(result.intimacyAvg,5)/5, tP=Math.min(result.passionAvg,5)/5, tC=Math.min(result.commitAvg,5)/5;
+  const pI=lerp({x:cx,y:cy},vI,tI), pP=lerp({x:cx,y:cy},vP,tP), pC=lerp({x:cx,y:cy},vC,tC);
+  document.getElementById('scorePoly').setAttribute('points', pI.x+','+pI.y+' '+pP.x+','+pP.y+' '+pC.x+','+pC.y);
+  function setCircle(id,pt) { document.getElementById(id).setAttribute('cx',pt.x); document.getElementById(id).setAttribute('cy',pt.y); }
+  setCircle('dotI',pI); setCircle('dotP',pP); setCircle('dotC',pC);
+
+  // Triangle draw animation
+  const poly = document.getElementById('scorePoly');
+  const dist = (a,b) => Math.hypot(b.x-a.x, b.y-a.y);
+  const perim = dist(pI,pP) + dist(pP,pC) + dist(pC,pI);
+  poly.style.strokeDasharray = perim;
+  poly.style.strokeDashoffset = perim;
+  poly.style.fill = 'transparent';
+  poly.style.transition = 'stroke-dashoffset 1.4s cubic-bezier(0.4,0,0.2,1) 0.2s, fill 0.8s ease 1.3s';
+  ['dotI','dotP','dotC'].forEach((id,i) => {
+    const dot = document.getElementById(id);
+    dot.style.opacity = '0';
+    dot.style.transition = 'opacity 0.3s ease ' + (1.4 + i * 0.14) + 's';
+  });
+  const svgEl = document.getElementById('triangleSvg');
+  const obs = new IntersectionObserver(entries => {
+    if (!entries[0].isIntersecting) return;
+    obs.disconnect();
+    requestAnimationFrame(() => {
+      poly.style.strokeDashoffset = '0';
+      poly.style.fill = 'rgba(244,156,187,0.18)';
+      ['dotI','dotP','dotC'].forEach(id => { document.getElementById(id).style.opacity = '1'; });
+    });
+  }, { threshold: 0.35 });
+  obs.observe(svgEl);
+})();
+
+function doRetry() {
+  localStorage.removeItem('loveAnswers'); localStorage.removeItem('loveResult');
+  window.location.href = 'index.html';
+}
+</script>
+</body>
+</html>
