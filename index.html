@@ -7,13 +7,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --rose: #F49CBB;
-  --rose-light: #FBDAE6;
-  --rose-pale: #FDF3F6;
-  --rose-deep: #D4607E;
+  --rose: #C8405A;
+  --rose-light: #F2A0B0;
+  --rose-pale: #FDF0F2;
+  --rose-deep: #7D1A2E;
   --cream: #FBF6F0;
   --warm-white: #FEFCFA;
-  --ink: #7D2040;
+  --ink: #1C1016;
   --ink-mid: #4A2D35;
   --ink-muted: #8C6870;
   --gold: #C4923A;
@@ -31,16 +31,16 @@ html, body {
 /* ── BACKGROUND ───────────────────────── */
 .bg {
   position: fixed; inset: 0; z-index: 0;
-  background: radial-gradient(ellipse at 50% 20%, rgba(244,156,187,0.07) 0%, transparent 65%);
+  background: radial-gradient(ellipse at 50% 20%, rgba(200,64,90,0.07) 0%, transparent 65%);
   pointer-events: none;
 }
 .orb {
   position: fixed; border-radius: 50%; filter: blur(40px);
   pointer-events: none; z-index: 0;
 }
-.orb-a { width: 240px; height: 240px; background: rgba(244,156,187,0.08); top: -60px; right: -60px; }
+.orb-a { width: 240px; height: 240px; background: rgba(200,64,90,0.08); top: -60px; right: -60px; }
 .orb-b { width: 180px; height: 180px; background: rgba(196,146,58,0.07); bottom: 10%; left: -50px; }
-.orb-c { width: 140px; height: 140px; background: rgba(244,156,187,0.05); bottom: 30%; right: -30px; }
+.orb-c { width: 140px; height: 140px; background: rgba(200,64,90,0.05); bottom: 30%; right: -30px; }
 
 .app {
   position: relative; z-index: 1;
@@ -61,8 +61,8 @@ html, body {
 .logo { font-size: 15px; font-weight: 700; letter-spacing: 0.02em; color: var(--ink); }
 .header-pill {
   font-size: 10px; font-weight: 500; letter-spacing: 0.10em; text-transform: uppercase;
-  color: var(--rose); background: rgba(244,156,187,0.08);
-  border: 1px solid rgba(244,156,187,0.20); border-radius: 100px; padding: 4px 12px;
+  color: var(--rose); background: rgba(200,64,90,0.08);
+  border: 1px solid rgba(200,64,90,0.20); border-radius: 100px; padding: 4px 12px;
 }
 
 /* ── HERO SCENE ───────────────────────── */
@@ -76,7 +76,7 @@ html, body {
   position: absolute; top: 50%; left: 50%;
   transform: translate(-50%, -50%);
   animation: heartFloat 5s ease-in-out infinite;
-  z-index: 2; filter: drop-shadow(0 0 28px rgba(244,156,187,0.45)) drop-shadow(0 12px 32px rgba(0,0,0,0.18));
+  z-index: 2; filter: drop-shadow(0 0 28px rgba(200,64,90,0.45)) drop-shadow(0 12px 32px rgba(0,0,0,0.18));
 }
 @keyframes heartFloat {
   0%,100% { transform: translate(-50%, -50%) rotate(-2deg) scale(1); }
@@ -89,7 +89,7 @@ html, body {
   border-radius: 8px;
   background: linear-gradient(180deg, #f7ede0 0%, #ede2d0 100%);
   padding: 5px 5px 16px;
-  box-shadow: 0 6px 22px rgba(0,0,0,0.16), 0 2px 8px rgba(0,0,0,0.09), rgba(244,156,187,0.12) 0 4px 16px;
+  box-shadow: 0 6px 22px rgba(0,0,0,0.16), 0 2px 8px rgba(0,0,0,0.09), rgba(200,64,90,0.12) 0 4px 16px;
   cursor: default;
 }
 .tc-img-wrap { border-radius: 4px; overflow: hidden; height: 78px; position: relative; }
@@ -154,7 +154,7 @@ html, body {
 /* ── INFO BLOCK ───────────────────────── */
 .info-block {
   margin: 10px 22px 0; padding: 11px 16px;
-  background: rgba(244,156,187,0.05); border: 1px solid rgba(244,156,187,0.15);
+  background: rgba(200,64,90,0.05); border: 1px solid rgba(200,64,90,0.15);
   border-radius: 14px; display: flex; align-items: center; gap: 12px;
 }
 .info-icon { font-size: 22px; flex-shrink: 0; }
@@ -170,30 +170,30 @@ html, body {
   display: flex; align-items: center; gap: 5px;
   font-size: 11px; font-weight: 400; color: var(--ink-muted);
 }
-.badge-dot { width: 3px; height: 3px; border-radius: 50%; background: rgba(244,156,187,0.30); }
+.badge-dot { width: 3px; height: 3px; border-radius: 50%; background: rgba(200,64,90,0.30); }
 
 /* ── DIVIDER ─────────────────────────── */
-.divider { height: 1px; margin: 0 22px; background: linear-gradient(90deg, transparent, rgba(244,156,187,0.18), transparent); flex-shrink: 0; }
+.divider { height: 1px; margin: 0 22px; background: linear-gradient(90deg, transparent, rgba(200,64,90,0.18), transparent); flex-shrink: 0; }
 
 /* ── CTA ─────────────────────────────── */
 .cta-section { padding: 14px 22px calc(20px + env(safe-area-inset-bottom)); display: flex; flex-direction: column; gap: 10px; flex-shrink: 0; }
 .cta-btn {
   display: flex; align-items: center; justify-content: space-between;
   width: 100%; border: none; border-radius: 100px; padding: 6px;
-  background: var(--rose); box-shadow: 0 4px 24px rgba(244,156,187,0.32);
+  background: var(--rose); box-shadow: 0 4px 24px rgba(200,64,90,0.32);
   cursor: pointer;
   transition: transform 0.18s, box-shadow 0.18s, background 0.18s;
 }
-.cta-btn:hover { background: var(--rose-deep); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(244,156,187,0.42); }
+.cta-btn:hover { background: var(--rose-deep); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(200,64,90,0.42); }
 .cta-btn:active { transform: scale(0.97); }
 .cta-label {
   font-family: 'DM Sans', system-ui, sans-serif;
-  font-size: 14px; font-weight: 500; color: #7D2040;
+  font-size: 14px; font-weight: 500; color: #fff;
   margin: 0 18px 0 22px; white-space: nowrap;
 }
 .cta-icon {
-  background: rgba(125,32,64,0.12); border-radius: 100px;
-  padding: 12px 20px; font-size: 16px; line-height: 1; display: flex; align-items: center; color: #7D2040;
+  background: rgba(255,255,255,0.20); border-radius: 100px;
+  padding: 12px 20px; font-size: 16px; line-height: 1; display: flex; align-items: center; color: rgba(255,255,255,0.85);
 }
 .cta-secondary {
   display: flex; align-items: center; justify-content: center; gap: 8px;
@@ -218,27 +218,27 @@ html, body {
 .sheet {
   width: 100%; max-width: 430px;
   background: var(--warm-white);
-  border: 1px solid rgba(244,156,187,0.15);
+  border: 1px solid rgba(200,64,90,0.15);
   border-radius: 28px 28px 0 0;
   padding: 20px 24px calc(36px + env(safe-area-inset-bottom));
   transform: translateY(100%);
   transition: transform 0.46s cubic-bezier(0.22,1,0.36,1);
 }
 .overlay.open .sheet { transform: translateY(0); }
-.sheet-handle { width: 40px; height: 4px; background: rgba(244,156,187,0.15); border-radius: 2px; margin: 0 auto 22px; }
+.sheet-handle { width: 40px; height: 4px; background: rgba(200,64,90,0.15); border-radius: 2px; margin: 0 auto 22px; }
 .sheet-icon-row { display: flex; justify-content: center; margin-bottom: 14px; }
-.sheet-lock-icon { width: 52px; height: 52px; border-radius: 50%; background: rgba(244,156,187,0.08); border: 1.5px solid rgba(244,156,187,0.20); display: flex; align-items: center; justify-content: center; font-size: 24px; }
+.sheet-lock-icon { width: 52px; height: 52px; border-radius: 50%; background: rgba(200,64,90,0.08); border: 1.5px solid rgba(200,64,90,0.20); display: flex; align-items: center; justify-content: center; font-size: 24px; }
 .sheet-title { font-family: 'Playfair Display', Georgia, serif; font-size: 18px; font-weight: 700; color: var(--ink); text-align: center; margin-bottom: 8px; }
 .sheet-sub { font-size: 13px; font-weight: 400; color: var(--ink-muted); line-height: 1.75; text-align: center; margin-bottom: 22px; }
 .google-btn {
   display: flex; align-items: center; justify-content: center; gap: 10px;
-  width: 100%; border: 1px solid rgba(244,156,187,0.15); border-radius: 100px; padding: 14px 24px;
-  background: #fff; box-shadow: 0 2px 12px rgba(244,156,187,0.08);
+  width: 100%; border: 1px solid rgba(200,64,90,0.15); border-radius: 100px; padding: 14px 24px;
+  background: #fff; box-shadow: 0 2px 12px rgba(200,64,90,0.08);
   cursor: pointer; font-family: 'DM Sans', system-ui, sans-serif;
   font-weight: 500; font-size: 14.5px; color: var(--ink);
   transition: transform 0.18s, box-shadow 0.18s; position: relative; margin-bottom: 12px;
 }
-.google-btn:hover { box-shadow: 0 4px 20px rgba(244,156,187,0.14); transform: translateY(-1px); }
+.google-btn:hover { box-shadow: 0 4px 20px rgba(200,64,90,0.14); transform: translateY(-1px); }
 .google-btn:active { transform: scale(0.97); }
 .google-btn:disabled { opacity: 0.7; cursor: not-allowed; }
 .google-btn-label { transition: opacity 0.18s; }
@@ -246,7 +246,7 @@ html, body {
 .google-spinner {
   position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%);
   width: 22px; height: 22px;
-  border: 2.5px solid rgba(244,156,187,0.15); border-top-color: var(--rose); border-radius: 50%;
+  border: 2.5px solid rgba(200,64,90,0.15); border-top-color: var(--rose); border-radius: 50%;
   animation: spin 0.7s linear infinite; opacity: 0; pointer-events: none; transition: opacity 0.18s;
 }
 .google-btn.loading .google-spinner { opacity: 1; }
@@ -286,9 +286,9 @@ html, body {
       <svg width="136" height="126" viewBox="0 0 136 126" fill="none" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <linearGradient id="hg-fill" x1="6" y1="6" x2="130" y2="120" gradientUnits="userSpaceOnUse">
-            <stop offset="0%"   stop-color="#FBDAE6"/>
-            <stop offset="48%"  stop-color="#F49CBB"/>
-            <stop offset="100%" stop-color="#D4607E"/>
+            <stop offset="0%"   stop-color="#F2A0B0"/>
+            <stop offset="48%"  stop-color="#C8405A"/>
+            <stop offset="100%" stop-color="#7D1A2E"/>
           </linearGradient>
           <linearGradient id="hg-hi" x1="20" y1="10" x2="80" y2="60" gradientUnits="userSpaceOnUse">
             <stop offset="0%"   stop-color="rgba(255,255,255,0.55)"/>

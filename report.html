@@ -7,13 +7,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --rose: #F49CBB;
-  --rose-light: #FBDAE6;
-  --rose-pale: #FDF3F6;
-  --rose-deep: #D4607E;
+  --rose: #C8405A;
+  --rose-light: #F2A0B0;
+  --rose-pale: #FDF0F2;
+  --rose-deep: #7D1A2E;
   --cream: #FBF6F0;
   --warm-white: #FEFCFA;
-  --ink: #7D2040;
+  --ink: #1C1016;
   --ink-mid: #4A2D35;
   --ink-muted: #8C6870;
   --gold: #C4923A;
@@ -21,16 +21,16 @@
 }
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 html, body { font-family: 'DM Sans', system-ui, sans-serif; color: var(--ink); min-height: 100%; background: var(--warm-white); }
-.bg { position: fixed; inset: 0; z-index: 0; background: radial-gradient(ellipse at 50% 0%, rgba(244,156,187,0.05) 0%, transparent 60%); pointer-events: none; }
+.bg { position: fixed; inset: 0; z-index: 0; background: radial-gradient(ellipse at 50% 0%, rgba(200,64,90,0.05) 0%, transparent 60%); pointer-events: none; }
 .app { position: relative; z-index: 1; max-width: 430px; margin: 0 auto; min-height: 100dvh; display: flex; flex-direction: column; padding-bottom: calc(40px + env(safe-area-inset-bottom)); }
 
 /* HEADER */
 .header { display: flex; align-items: center; gap: 10px; padding: 18px 20px 6px; }
-.back-btn { width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid rgba(244,156,187,0.20); background: rgba(244,156,187,0.05); display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 16px; color: var(--rose); transition: background 0.18s, transform 0.15s; flex-shrink: 0; }
-.back-btn:hover { background: rgba(244,156,187,0.10); }
+.back-btn { width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid rgba(200,64,90,0.20); background: rgba(200,64,90,0.05); display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 16px; color: var(--rose); transition: background 0.18s, transform 0.15s; flex-shrink: 0; }
+.back-btn:hover { background: rgba(200,64,90,0.10); }
 .back-btn:active { transform: scale(0.92); }
 .logo { font-size: 15px; font-weight: 700; letter-spacing: 0.02em; color: var(--ink); flex: 1; text-align: center; }
-.report-badge { font-size: 10px; font-weight: 500; letter-spacing: 0.10em; text-transform: uppercase; color: var(--rose); background: rgba(244,156,187,0.08); border: 1px solid rgba(244,156,187,0.18); border-radius: 100px; padding: 3px 10px; }
+.report-badge { font-size: 10px; font-weight: 500; letter-spacing: 0.10em; text-transform: uppercase; color: var(--rose); background: rgba(200,64,90,0.08); border: 1px solid rgba(200,64,90,0.18); border-radius: 100px; padding: 3px 10px; }
 
 /* HERO */
 .hero { text-align: center; padding: 14px 24px 0; }
@@ -39,7 +39,7 @@ html, body { font-family: 'DM Sans', system-ui, sans-serif; color: var(--ink); m
 .hero-pola { font-size: 12px; font-weight: 400; color: var(--ink-muted); }
 
 /* TIGA SISI CARD (bars + triangle unified) */
-.tiga-sisi-card { margin: 16px 20px 0; background: rgba(244,156,187,0.04); border: 1px solid rgba(244,156,187,0.14); border-radius: 18px; padding: 16px 16px 14px; }
+.tiga-sisi-card { margin: 16px 20px 0; background: rgba(200,64,90,0.04); border: 1px solid rgba(200,64,90,0.14); border-radius: 18px; padding: 16px 16px 14px; }
 .tiga-sisi-title { text-align: center; font-family: 'Playfair Display', Georgia, serif; font-size: 12px; font-weight: 700; color: var(--rose-deep); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 14px; }
 .scores-inner { padding: 0 4px; }
 .triangle-inner { margin-top: 10px; display: flex; justify-content: center; }
@@ -53,7 +53,7 @@ html, body { font-family: 'DM Sans', system-ui, sans-serif; color: var(--ink); m
 .score-level-badge { font-size: 10px; font-weight: 600; letter-spacing: 0.04em; padding: 2px 7px; border-radius: 100px; }
 .score-val { font-size: 12px; font-weight: 700; }
 .score-dim-desc { font-size: 11.5px; color: var(--ink-muted); line-height: 1.6; margin-top: 7px; }
-.score-bar-track { height: 5px; border-radius: 5px; background: rgba(244,156,187,0.10); overflow: hidden; }
+.score-bar-track { height: 5px; border-radius: 5px; background: rgba(200,64,90,0.10); overflow: hidden; }
 .score-bar-fill { height: 100%; border-radius: 5px; transition: width 0.9s cubic-bezier(0.4,0,0.2,1); width: 0%; }
 .fill-i, .fill-p, .fill-c { background: linear-gradient(90deg, var(--rose-light), var(--rose)); }
 .score-legend-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
@@ -69,12 +69,12 @@ html, body { font-family: 'DM Sans', system-ui, sans-serif; color: var(--ink); m
 .insights-section .list-desc { font-size: 11px; line-height: 1.55; }
 
 /* DIVIDER */
-.divider { height: 1px; margin: 18px 20px 0; background: linear-gradient(90deg, transparent, rgba(244,156,187,0.18), transparent); }
+.divider { height: 1px; margin: 18px 20px 0; background: linear-gradient(90deg, transparent, rgba(200,64,90,0.18), transparent); }
 
 /* SECTIONS */
 .section { padding: 16px 20px 0; }
 .sec-title { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 10px; }
-.overall-block { padding: 18px 20px 16px; background: rgba(244,156,187,0.05); border: 1px solid rgba(244,156,187,0.15); border-radius: 14px; position: relative; overflow: hidden; }
+.overall-block { padding: 18px 20px 16px; background: rgba(200,64,90,0.05); border: 1px solid rgba(200,64,90,0.15); border-radius: 14px; position: relative; overflow: hidden; }
 .overall-block::before { content: '❝'; position: absolute; top: -4px; left: 6px; font-size: 54px; line-height: 1; color: var(--rose-light); opacity: 0.25; font-family: 'Playfair Display', Georgia, serif; pointer-events: none; }
 .overall-text { font-family: 'Playfair Display', Georgia, serif; font-size: 13.5px; font-style: italic; font-weight: 400; color: var(--ink-mid); line-height: 1.75; }
 
@@ -82,7 +82,7 @@ html, body { font-family: 'DM Sans', system-ui, sans-serif; color: var(--ink); m
 .list-cards { display: flex; flex-direction: column; gap: 8px; }
 .list-card { display: flex; align-items: flex-start; gap: 10px; padding: 12px 14px; border-radius: 12px; }
 .list-card.strength { background: rgba(45,122,92,0.06); border: 1px solid rgba(45,122,92,0.20); }
-.list-card.awareness { background: rgba(244,156,187,0.05); border: 1px solid rgba(244,156,187,0.18); }
+.list-card.awareness { background: rgba(200,64,90,0.05); border: 1px solid rgba(200,64,90,0.18); }
 .list-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
 .list-head { font-size: 13px; font-weight: 500; margin-bottom: 2px; }
 .list-card.strength .list-head { color: var(--green); }
@@ -91,21 +91,21 @@ html, body { font-family: 'DM Sans', system-ui, sans-serif; color: var(--ink); m
 
 /* ASPEK */
 .aspek-cards { display: flex; flex-direction: column; gap: 10px; }
-.aspek-card { padding: 14px 16px; border-radius: 14px; border: 1px solid rgba(244,156,187,0.12); background: rgba(244,156,187,0.03); }
+.aspek-card { padding: 14px 16px; border-radius: 14px; border: 1px solid rgba(200,64,90,0.12); background: rgba(200,64,90,0.03); }
 .aspek-label-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
 .aspek-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
 .aspek-label { font-size: 10.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
 .aspek-desc { font-size: 12.5px; font-weight: 400; color: var(--ink-mid); line-height: 1.65; }
 
 /* REMINDER */
-.reminder { margin: 16px 20px 0; padding: 14px 16px; background: rgba(244,156,187,0.04); border: 1px solid rgba(244,156,187,0.15); border-radius: 14px; }
+.reminder { margin: 16px 20px 0; padding: 14px 16px; background: rgba(200,64,90,0.04); border: 1px solid rgba(200,64,90,0.15); border-radius: 14px; }
 .reminder-text { font-size: 12.5px; font-weight: 400; color: var(--ink-muted); line-height: 1.65; text-align: center; }
 .reminder-text strong { color: var(--rose); font-weight: 500; }
 
 /* ACTIONS */
 .actions { padding: 18px 20px 0; display: flex; flex-direction: column; gap: 9px; }
-.cta-primary { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; border: none; border-radius: 100px; padding: 14px 24px; background: var(--rose); box-shadow: 0 4px 20px rgba(244,156,187,0.28); cursor: pointer; font-family: 'DM Sans', system-ui, sans-serif; font-weight: 500; font-size: 14px; color: #7D2040; transition: transform 0.18s, box-shadow 0.18s, background 0.18s; }
-.cta-primary:hover { background: var(--rose-deep); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(244,156,187,0.36); }
+.cta-primary { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; border: none; border-radius: 100px; padding: 14px 24px; background: var(--rose); box-shadow: 0 4px 20px rgba(200,64,90,0.28); cursor: pointer; font-family: 'DM Sans', system-ui, sans-serif; font-weight: 500; font-size: 14px; color: #1C1016; transition: transform 0.18s, box-shadow 0.18s, background 0.18s; }
+.cta-primary:hover { background: var(--rose-deep); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(200,64,90,0.36); }
 .cta-primary:active { transform: scale(0.97); }
 .cta-secondary { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; border: 1.5px solid var(--rose); border-radius: 100px; padding: 13px 24px; background: transparent; cursor: pointer; font-family: 'DM Sans', system-ui, sans-serif; font-weight: 500; font-size: 13px; color: var(--rose); transition: transform 0.18s, opacity 0.18s; }
 .cta-secondary:hover { opacity: 0.72; }
@@ -113,19 +113,19 @@ html, body { font-family: 'DM Sans', system-ui, sans-serif; color: var(--ink); m
 /* POLAROID */
 .card-section { display: flex; justify-content: center; padding: 0 20px; }
 .card-wrap { position: relative; margin-top: 20px; margin-bottom: 10px; }
-.polaroid { background: linear-gradient(180deg,#f7ede0 0%,#ede2d0 100%); border-radius: 16px; padding: 9px 9px 24px; width: min(240px,calc(100vw - 60px)); box-shadow: rgba(244,156,187,0.16) 0 8px 36px, rgba(255,248,245,0.60) 2px 2px 0 inset, rgba(244,156,187,0.08) 0 22px 55px, rgba(0,0,0,0.06) 0 5px 14px; transform: rotate(2.5deg); animation: polFloat 5.5s ease-in-out infinite 0.6s; position: relative; z-index: 2; }
+.polaroid { background: linear-gradient(180deg,#f7ede0 0%,#ede2d0 100%); border-radius: 16px; padding: 9px 9px 24px; width: min(240px,calc(100vw - 60px)); box-shadow: rgba(200,64,90,0.16) 0 8px 36px, rgba(255,248,245,0.60) 2px 2px 0 inset, rgba(200,64,90,0.08) 0 22px 55px, rgba(0,0,0,0.06) 0 5px 14px; transform: rotate(2.5deg); animation: polFloat 5.5s ease-in-out infinite 0.6s; position: relative; z-index: 2; }
 @keyframes polFloat { 0%,100% { transform: rotate(2.5deg) translateY(0); } 50% { transform: rotate(2.5deg) translateY(-8px); } }
 .pi { border-radius: 9px; overflow: hidden; height: 176px; position: relative; }
 .pi-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
 .pi-label { position: absolute; bottom: 0; left: 0; right: 0; z-index: 3; padding: 28px 10px 8px; background: linear-gradient(transparent,rgba(0,0,0,0.75)); font-size: 11.5px; font-weight: 700; color: #fff; text-align: center; line-height: 1.2; text-shadow: 0 1px 4px rgba(0,0,0,0.7); }
 
 /* SUITE NUDGE */
-.suite-nudge { padding: 20px 20px 0; border-top: 1px solid rgba(244,156,187,0.18); margin-top: 18px; }
+.suite-nudge { padding: 20px 20px 0; border-top: 1px solid rgba(200,64,90,0.18); margin-top: 18px; }
 .suite-nudge-text { font-size: 12.5px; color: var(--ink-muted); line-height: 1.75; text-align: center; margin-bottom: 14px; }
 .suite-nudge-text em { font-style: normal; color: var(--rose-deep); font-weight: 500; }
 .suite-nudge-list { display: flex; flex-direction: column; gap: 8px; }
-.suite-nudge-item { display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-radius: 12px; background: rgba(244,156,187,0.07); border: 1px solid rgba(244,156,187,0.18); cursor: pointer; text-align: left; font-family: 'DM Sans', system-ui, sans-serif; width: 100%; transition: background 0.18s; }
-.suite-nudge-item:hover { background: rgba(244,156,187,0.14); }
+.suite-nudge-item { display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-radius: 12px; background: rgba(200,64,90,0.07); border: 1px solid rgba(200,64,90,0.18); cursor: pointer; text-align: left; font-family: 'DM Sans', system-ui, sans-serif; width: 100%; transition: background 0.18s; }
+.suite-nudge-item:hover { background: rgba(200,64,90,0.14); }
 .suite-nudge-item.soon { opacity: 0.52; cursor: default; pointer-events: none; }
 .suite-nudge-cs { font-size: 9.5px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-muted); background: rgba(140,104,112,0.09); border: 1px solid rgba(140,104,112,0.16); border-radius: 100px; padding: 2px 8px; flex-shrink: 0; white-space: nowrap; }
 .suite-nudge-item-icon { font-size: 20px; flex-shrink: 0; }
@@ -215,14 +215,14 @@ html, body { font-family: 'DM Sans', system-ui, sans-serif; color: var(--ink); m
     </div>
     <div class="triangle-inner">
       <svg id="triangleSvg" width="310" height="280" viewBox="0 0 310 280" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <polygon points="155,24 295,252 15,252" stroke="rgba(244,156,187,0.20)" stroke-width="1.5" fill="rgba(244,156,187,0.04)" stroke-linejoin="round"/>
-        <polygon id="ring25" fill="none" stroke="rgba(244,156,187,0.08)" stroke-width="1" stroke-dasharray="4 4"/>
-        <polygon id="ring50" fill="none" stroke="rgba(244,156,187,0.08)" stroke-width="1" stroke-dasharray="4 4"/>
-        <polygon id="ring75" fill="none" stroke="rgba(244,156,187,0.08)" stroke-width="1" stroke-dasharray="4 4"/>
+        <polygon points="155,24 295,252 15,252" stroke="rgba(200,64,90,0.20)" stroke-width="1.5" fill="rgba(200,64,90,0.04)" stroke-linejoin="round"/>
+        <polygon id="ring25" fill="none" stroke="rgba(200,64,90,0.08)" stroke-width="1" stroke-dasharray="4 4"/>
+        <polygon id="ring50" fill="none" stroke="rgba(200,64,90,0.08)" stroke-width="1" stroke-dasharray="4 4"/>
+        <polygon id="ring75" fill="none" stroke="rgba(200,64,90,0.08)" stroke-width="1" stroke-dasharray="4 4"/>
         <line id="axisI" stroke="rgba(123,155,184,0.20)" stroke-width="1" stroke-dasharray="3 3"/>
         <line id="axisP" stroke="rgba(196,115,106,0.20)" stroke-width="1" stroke-dasharray="3 3"/>
         <line id="axisC" stroke="rgba(123,158,138,0.20)" stroke-width="1" stroke-dasharray="3 3"/>
-        <polygon id="scorePoly" fill="rgba(244,156,187,0.14)" stroke="#F49CBB" stroke-width="2" stroke-linejoin="round"/>
+        <polygon id="scorePoly" fill="rgba(200,64,90,0.14)" stroke="#C8405A" stroke-width="2" stroke-linejoin="round"/>
         <circle id="dotI" r="5" fill="#7B9BB8" stroke="#fff" stroke-width="2"/>
         <circle id="dotP" r="5" fill="#C4736A" stroke="#fff" stroke-width="2"/>
         <circle id="dotC" r="5" fill="#7B9E8A" stroke="#fff" stroke-width="2"/>
@@ -299,7 +299,7 @@ const LOVE_REPORT = {
       { head: 'Jangan Anggap Remeh', desc: 'Justru karena semuanya terasa baik, mudah untuk mulai cuek. Teruslah hadir.' },
     ],
     aspek: [
-      { label: 'Intimacy', color: '#F49CBB', dot: '#F49CBB', desc: 'Rasa dekat, hangat, dan nyaman yang kamu rasakan sangat kuat. Kamu merasa aman untuk jadi diri sendiri.' },
+      { label: 'Intimacy', color: '#C8405A', dot: '#C8405A', desc: 'Rasa dekat, hangat, dan nyaman yang kamu rasakan sangat kuat. Kamu merasa aman untuk jadi diri sendiri.' },
       { label: 'Passion', color: '#C4923A', dot: '#C4923A', desc: 'Ada spark yang jelas — daya tarik yang bikin berdebar dan rasa tak tergantikan.' },
       { label: 'Commitment', color: '#2D7A5C', dot: '#2D7A5C', desc: 'Kamu punya niat dan keyakinan untuk mempertahankan hubungan ini ke depannya.' },
     ],
@@ -316,7 +316,7 @@ const LOVE_REPORT = {
       { head: 'Jangan Bergantung Hanya pada Perasaan', desc: 'Cinta romantis bisa fluktuatif. Bangun fondasi yang lebih solid secara bertahap.' },
     ],
     aspek: [
-      { label: 'Intimacy', color: '#F49CBB', dot: '#F49CBB', desc: 'Kamu merasa dekat dan nyambung secara emosional. Ada rasa dipahami yang terasa nyata.' },
+      { label: 'Intimacy', color: '#C8405A', dot: '#C8405A', desc: 'Kamu merasa dekat dan nyambung secara emosional. Ada rasa dipahami yang terasa nyata.' },
       { label: 'Passion', color: '#C4923A', dot: '#C4923A', desc: 'Spark-nya terasa kuat — ada sesuatu yang bikin kamu tertarik dan tetap ingin dekat.' },
       { label: 'Commitment', color: '#2D7A5C', dot: '#2D7A5C', desc: 'Komitmen jangka panjang belum terlalu kuat terbentuk. Bisa berkembang seiring waktu.' },
     ],
@@ -332,7 +332,7 @@ const LOVE_REPORT = {
       { head: 'Jaga Spark Tetap Hidup', desc: 'Keintiman dan komitmen yang kuat bisa membuat hubungan terasa "datar". Sisihkan momen untuk menghadirkan kejutan kecil.' },
     ],
     aspek: [
-      { label: 'Intimacy', color: '#F49CBB', dot: '#F49CBB', desc: 'Kamu merasa sangat dekat dan dipahami — ada kehangatan yang stabil dan konstan.' },
+      { label: 'Intimacy', color: '#C8405A', dot: '#C8405A', desc: 'Kamu merasa sangat dekat dan dipahami — ada kehangatan yang stabil dan konstan.' },
       { label: 'Passion', color: '#C4923A', dot: '#C4923A', desc: 'Spark mungkin tidak terlalu dominan saat ini, tapi bisa tumbuh dengan perhatian yang tepat.' },
       { label: 'Commitment', color: '#2D7A5C', dot: '#2D7A5C', desc: 'Komitmenmu kuat dan tulus — kamu ingin hubungan ini bertahan dan berkembang.' },
     ],
@@ -349,7 +349,7 @@ const LOVE_REPORT = {
       { head: 'Komunikasikan Harapanmu', desc: 'Kalau kamu ingin lebih, penting untuk jujur — baik ke diri sendiri maupun ke dia.' },
     ],
     aspek: [
-      { label: 'Intimacy', color: '#F49CBB', dot: '#F49CBB', desc: 'Kamu merasa dekat, nyaman, dan dipahami — ini adalah kekuatan utama hubunganmu.' },
+      { label: 'Intimacy', color: '#C8405A', dot: '#C8405A', desc: 'Kamu merasa dekat, nyaman, dan dipahami — ini adalah kekuatan utama hubunganmu.' },
       { label: 'Passion', color: '#C4923A', dot: '#C4923A', desc: 'Ketertarikan romantis belum terlalu terasa. Bisa datang seiring kebersamaan.' },
       { label: 'Commitment', color: '#2D7A5C', dot: '#2D7A5C', desc: 'Komitmen jangka panjang belum terbentuk. Wajar di tahap awal.' },
     ],
@@ -366,7 +366,7 @@ const LOVE_REPORT = {
       { head: 'Luangkan Waktu untuk Mengenal', desc: 'Investasikan waktu untuk percakapan mendalam dan momen yang membangun kepercayaan.' },
     ],
     aspek: [
-      { label: 'Intimacy', color: '#F49CBB', dot: '#F49CBB', desc: 'Kedekatan emosional sedang berkembang. Ini adalah area yang paling butuh perhatian.' },
+      { label: 'Intimacy', color: '#C8405A', dot: '#C8405A', desc: 'Kedekatan emosional sedang berkembang. Ini adalah area yang paling butuh perhatian.' },
       { label: 'Passion', color: '#C4923A', dot: '#C4923A', desc: 'Ada daya tarik yang kuat — perasaan ini nyata dan signifikan.' },
       { label: 'Commitment', color: '#2D7A5C', dot: '#2D7A5C', desc: 'Kamu mau serius dan berkomitmen — itu menunjukkan niat yang tulus.' },
     ],
@@ -383,7 +383,7 @@ const LOVE_REPORT = {
       { head: 'Kenali Dia, Bukan Hanya Ideamu tentang Dia', desc: 'Infatuation sering mengisi kekosongan dengan imajinasi. Investasikan waktu untuk mengenal dia yang sebenarnya.' },
     ],
     aspek: [
-      { label: 'Intimacy', color: '#F49CBB', dot: '#F49CBB', desc: 'Kedekatan emosional yang dalam belum terbentuk — ada potensi, tapi butuh waktu dan usaha.' },
+      { label: 'Intimacy', color: '#C8405A', dot: '#C8405A', desc: 'Kedekatan emosional yang dalam belum terbentuk — ada potensi, tapi butuh waktu dan usaha.' },
       { label: 'Passion', color: '#C4923A', dot: '#C4923A', desc: 'Ini adalah dimensi terkuatmu — ketertarikan dan chemistry yang sangat terasa.' },
       { label: 'Commitment', color: '#2D7A5C', dot: '#2D7A5C', desc: 'Komitmen jangka panjang belum ada. Itu normal untuk tahap ini.' },
     ],
@@ -400,7 +400,7 @@ const LOVE_REPORT = {
       { head: 'Rekindling adalah Pilihan', desc: 'Keintiman dan passion bisa dibangun ulang dengan usaha yang sadar dari kedua pihak.' },
     ],
     aspek: [
-      { label: 'Intimacy', color: '#F49CBB', dot: '#F49CBB', desc: 'Kedekatan emosional sedang tidak terasa kuat. Ini area yang butuh perhatian dan investasi.' },
+      { label: 'Intimacy', color: '#C8405A', dot: '#C8405A', desc: 'Kedekatan emosional sedang tidak terasa kuat. Ini area yang butuh perhatian dan investasi.' },
       { label: 'Passion', color: '#C4923A', dot: '#C4923A', desc: 'Spark sedang redup. Wajar terjadi, tapi perlu disadari dan direspons.' },
       { label: 'Commitment', color: '#2D7A5C', dot: '#2D7A5C', desc: 'Komitmenmu adalah kekuatan — tapi pastikan didasarkan pada makna, bukan sekadar kebiasaan.' },
     ],
@@ -417,7 +417,7 @@ const LOVE_REPORT = {
       { head: 'Jangan Memaksakan', desc: 'Hubungan yang paling baik tumbuh secara organik. Beri waktu dan ruang.' },
     ],
     aspek: [
-      { label: 'Intimacy', color: '#F49CBB', dot: '#F49CBB', desc: 'Kedekatan emosional yang dalam belum terasa. Mungkin masih perlu waktu untuk terbentuk.' },
+      { label: 'Intimacy', color: '#C8405A', dot: '#C8405A', desc: 'Kedekatan emosional yang dalam belum terasa. Mungkin masih perlu waktu untuk terbentuk.' },
       { label: 'Passion', color: '#C4923A', dot: '#C4923A', desc: 'Ketertarikan dan spark belum muncul dengan kuat. Ini bisa berubah.' },
       { label: 'Commitment', color: '#2D7A5C', dot: '#2D7A5C', desc: 'Niat jangka panjang belum ada. Wajar di titik ini.' },
     ],
@@ -480,9 +480,9 @@ const DIM_LEVEL_DESC = {
   },
 };
 const LEVEL_STYLE = {
-  Rendah: { bg: 'rgba(244,156,187,0.10)', color: 'var(--rose-deep)' },
-  Sedang: { bg: 'rgba(244,156,187,0.18)', color: 'var(--rose-deep)' },
-  Tinggi: { bg: 'rgba(212,96,126,0.18)',  color: 'var(--rose-deep)' },
+  Rendah: { bg: 'rgba(200,64,90,0.10)', color: 'var(--rose-deep)' },
+  Sedang: { bg: 'rgba(200,64,90,0.18)', color: 'var(--rose-deep)' },
+  Tinggi: { bg: 'rgba(125,26,46,0.18)',  color: 'var(--rose-deep)' },
 };
 function setLevelBadge(badgeId, descId, score, dim) {
   const lvl = levelText(score);
@@ -572,7 +572,7 @@ buildList('awareList',    data.awareness,  'awareness', '&#9873;');
     obs.disconnect();
     requestAnimationFrame(() => {
       poly.style.strokeDashoffset = '0';
-      poly.style.fill = 'rgba(244,156,187,0.18)';
+      poly.style.fill = 'rgba(200,64,90,0.18)';
       ['dotI','dotP','dotC'].forEach(id => { document.getElementById(id).style.opacity = '1'; });
     });
   }, { threshold: 0.35 });
